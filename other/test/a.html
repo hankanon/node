@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    姓名、日期、金额等信息不全需要，去找人力部门核实信息
+</head>
+<body>
+<script>
+    var numbers = {
+        array: [3, 5, 10],
+        getNumbers: function() {
+            console.log(this.array)
+            return this.array;
+        }
+    };
+    // Create a bound function
+    var boundGetNumbers = numbers.getNumbers.bind(numbers);
+    boundGetNumbers(); // => [3, 5, 10]
+    // Extract method from object
+    var simpleGetNumbers = numbers.getNumbers;
+    simpleGetNumbers(); // => undefined or throws an error in strict mode
+</script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+       .can{
+           border:1px solid #d3d3d3;
+           background: #252736;
+       }
+    </style>
+</head>
+<body>
+
+<canvas id="myCanvas" width="300" height="300" class="can">
+    Your browser does not support the HTML5 canvas tag.
+</canvas>
+
+<script>
+var drawcanvas = (function(){
+    var c=document.getElementById("myCanvas");
+    var ctx=c.getContext("2d");
+    var _x,_y;
+    var Point = function (x,y){
+        _x  =x;
+        _y=y
+    };
+    var pList =[];
+    for(var i=0;i<3;i++)
+    {
+        for(var j=0;j<3;j++)
+        {
+            ctx.beginPath();
+            ctx.arc(50+j*100,50+i*100,30,0,2*Math.PI);
+            var tem = new Point(50+j*100,50+i*100);
+            pList.push(tem);
+            ctx.strokeStyle="white";
+            ctx.lineWidth=3;
+            ctx.stroke();
+        }
+    }
+    $("#myCanvas").on("mousedown",function(e){
+        alert("dddd");
+    })
+})();
+
+
+
+
+</script>
+
+</body>
+</html>

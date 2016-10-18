@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div onclick="readfile()">
+    按钮
+</div>
+<script>
+    function readfile(){
+        var xmlHttp;
+//判断浏览器是否支持ActiveX控件
+        if(window.ActiveXObject){
+            alert("支持");
+//支持-通过ActiveXObject的一个新实例来创建XMLHttpRequest对象
+            fso = new ActiveXObject("Microsoft.XMLHTTP");
+            var filepath = "D:\\Test\\文件夹2\\1.txt";
+            var stream = fso.CreateTextFile(filepath,true);
+            stream.Write("First Line");
+            stream.WriteBlankLines(2);
+            stream.WriteLine("SecondLine");
+            stream.Close();
+
+            stream = fso.OpenTextFile(filepath);
+            document.getElementById("result").innerText = stream.ReadAll();
+            stream.Close();
+        }
+//不支持
+        else if(window.XMLHttpRequest){
+            alert("不支持");
+            fso = new XMLHttpRequest();
+            var filepath = "D:\\Test\\文件夹2\\1.txt";
+            var stream = fso.CreateTextFile(filepath,true);
+            stream.Write("First Line");
+            stream.WriteBlankLines(2);
+            stream.WriteLine("SecondLine");
+            stream.Close();
+
+            stream = fso.OpenTextFile(filepath);
+            document.getElementById("result").innerText = stream.ReadAll();
+            stream.Close();
+        }
+        //var fso = new ActiveXObject("Scripting.FileSystemObject");
+
+    }
+</script>
+</body>
+</html>

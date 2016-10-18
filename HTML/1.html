@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+    .container{
+    float:left;
+    position:relative;
+    left:50%;  border: 1px solid black;
+    }
+
+    .container ul{
+    list-style:none;
+    margin:0;
+    padding:0;
+    border: 1px red solid;
+    position:relative;
+    left:-50%;
+    }
+    .container li{float:left;display:inline;margin-right:8px;}
+    </style>
+</head>
+<body>
+<div class="container">
+    <ul>
+        <li><a href="#">1</a></li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+    </ul>
+</div>
+
+<script>
+    function test(){
+        return "ok";
+    }
+    (function run(){
+        var tt =test();
+        alert(tt);
+    })();
+</script>
+</body>
+</html>

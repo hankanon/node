@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .tt{
+            width: 100px;
+            height: 200px;
+            border: 5px solid black;
+            margin: 30px;
+            overflow: scroll;
+        }
+    </style>
+</head>
+<body>
+<div id="aa" class="tt">
+    <p>sdjknkjlsdnlkjdsn</p>
+    <p>sdjknkjlsdnlkjdsn</p>
+    <p>sdjknkjlsdnlkjdsn</p>
+    <p>sdjknkjlsdnlkjdsn</p>
+    <p>sdjknkjlsdnlkjdsn</p>
+    <p>sdjknkjlsdnlkjdsn</p>
+    <p>sdjknkjlsdnlkjdsn</p>
+    <p>sdjknkjlsdnlkjdsn</p>
+    <p>1</p>
+
+    <p>1</p>
+
+    <p>1</p>
+
+    <p>1</p>
+
+    <p>1</p>
+
+    <p>1</p>
+
+    <p>1</p>
+
+    <p>1</p>
+
+    <p>1</p>
+
+    <p>1</p>
+</div>
+<button onclick="off()">按钮</button>
+<script>
+//    window.onload=function(){
+//        setInterval(show1,1000);
+//    };
+   var a = document.getElementById("aa");
+    function off(){
+        var w = document.getElementById("aa");
+        alert(w.scrollTop);
+    }
+//   function show1(){
+//       alert(w.scrollTop);
+//       w.scrollTop= w.scrollTop+ 20;
+//   }
+//    alert(a.offsetHeight);  //209
+//    alert(a.offsetLeft);    //30
+//    alert(a.offsetTop);     //30
+//    alert(a.offsetWidth);   //109
+//    alert(a.clientWidth);
+//    alert(a.clientHeight);
+//    alert(a.clientLeft);
+//    alert(a.clientTop);
+</script>
+</body>
+</html>

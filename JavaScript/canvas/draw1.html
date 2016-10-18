@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<img src="picture.png" style="display:none" />
+<canvas id="canvas" width="300px" height="300px">
+
+</canvas>
+<div style="position: absolute;top:500px;left: 300px">
+
+</div>
+
+
+
+<script>
+    /**
+     *
+     * @type {Element}
+     * canvas绘图的两个属性，填充和描边  fillStyle、 strokeStyle
+     */
+    var can = document.getElementById("canvas");
+    if(can.getContext){
+        var draw = can.getContext("2d");
+//        draw.strokeStyle = "red";
+////        draw.strokeRect(100,100,50,50);
+////        draw.fillStyle = "rgba(0,0,255,0.5)";
+////        draw.fillRect(10,10,50,50);
+////        draw.clearRect(30,30,10,10);
+//        draw.beginPath();
+//        draw.arc(50,50,30,0,Math.PI);
+////        draw.arcTo(80,80,11,11,20);
+//        draw.stroke();
+        //开始路径
+//        draw.beginPath();
+////绘制外圆
+//        draw.arc(100, 100, 99, 0, 2 * Math.PI, false);
+////绘制内圆
+//        draw.moveTo(194, 100);
+//        draw.arc(100, 100, 94, 0, 2 * Math.PI, false);
+////绘制分针
+//        draw.moveTo(100, 100);
+//        draw.lineTo(100, 15);
+////绘制时针
+//        draw.moveTo(100, 100);
+//        draw.lineTo(35, 100);
+////描边路径
+//        draw.stroke();
+//        draw.font = "bold 14px Arial";
+//        draw.textAlign = "center";
+//        draw.textBaseline = "middle";
+//        draw.fillText("12", 100, 20);
+
+
+//        var fontSize = 100;
+//        draw.font = fontSize + "px Arial";
+//        while(draw.measureText("Hello world!").width > 140){
+//            fontSize--;
+//            draw.font = fontSize + "px Arial";
+//        }
+//        draw.fillText("Hello world!", 80, 80);
+//        draw.fillText("Font size is " + fontSize + "px", 10, 50);
+         var img = new Image();
+        img.src="picture.png";
+        img.onload = function(){
+        draw.drawImage(img, 10, 10,211,204,50,50,100,100);
+        };
+
+
+        
+//        var imgURI = drawing.toDataURL("image/png");
+////显示图像
+//        var image = document.createElement("img");
+//        image.src = imgURI;
+//        document.body.appendChild(image);
+    }
+</script>
+</body>
+</html>

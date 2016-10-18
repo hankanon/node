@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var mult = function (){
+        console.log("kaishijisuan");
+        var a=1;
+        for (var i= 0,l=arguments.length;i<l;i++){
+            a=a*arguments[i];
+        }
+        return a;
+    };
+//    console.log(mult(1,2,3,4));
+    var twomult = (function(){
+        var cache={};
+        return function(){
+            var args = Array.prototype.join.call(arguments,',');
+            console.log(args);
+//            console.log(cache.length);
+            if(args in cache){
+                console.log(args);
+                console.log(cache[args]);
+                return cache[args];
+            }
+            return cache[args]= mult.apply(this,arguments);
+        }
+    })();
+    console.log(twomult(1,2,3));
+    console.log(twomult(1,2,3,4,5,6));
+    console.log(twomult(1,2,3,4,5));
+
+</script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var lol = "grouble";
+    function test(){
+        var arr=[];
+      // for (var i=0;i<10;i++)
+        var i = 8;
+        arr[0]= function(){return i;};
+        arr[1]= (function(){return i;})();
+        arr[2]= (function(){return i;})();
+        arr[3]= function(){return i;};
+        arr[4]= function(){return i;};
+        i=9;
+        return arr;
+    };
+
+    var n = test();
+    console.log(n[0]());
+    console.log(n[1]);
+    console.log(n[2]);
+    console.log(n[3]());
+</script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    function SelectPack(name,sHexData){
+        var n1=sHexData.substr(0,40);
+        var n2 = "303030303030";
+        var n3=sHexData.substr(40);
+        var m1="";
+
+        switch (name){
+            case "C2H_OPERATORPIN":for(var k=0;k<89;k++){
+                m1 = m1 +"30";
+            }break;
+            case "C2H_OPERATORINFO":
+            case "C2H_CARDINFO":
+            case "C2H_ADDCARD":
+            case "C2H_INQCUSTINFO":
+            case "C2H_ADDCUSTINFO":
+            case "C2H_CUSTINFOSELECT":
+            case "C2H_EXCUSTINFO":
+            case "C2H_CLEARCARD":
+            case "C2H_PHONEBANKINQINFO":
+            case "C2H_EXCSINGPHONE":
+            case "C2H_FINGERMANAGER":for(var i=0;i<102;i++){
+                m1=m1+"30";
+            }break;
+            case "C2H_SIGNMESSAGE":
+            case "C2H_PHONEBANK":
+            case "C2H_CHECKPWD":
+            case "C2H_APPLYCARD":
+            case "C2H_BEGINCHECKINFO":
+            case "C2H_ACTIVECARD":
+            case "C2H_EXCARDPWD":
+            case "C2H_CARDXIJIEINQ":
+            case "C2H_SIGNINFOINQ":
+            case "C2H_SIGNINFOTEST":
+            case "C2H_EXCSINGPHONE":for(var j=0;j<83;j++){
+                m1=m1+"30";
+            }break;
+        }
+        var num =n1 + n2 + n3 + m1;
+        return num;
+    }
+    var str ="433230303036353630333061303031303631343430303030303036333230313630383132303934393237";
+    var val = SelectPack("C2H_FINGERMANAGER",str);
+    console.log(val);
+</script>
+</body>
+</html>

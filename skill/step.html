@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>4-6-1</title>
+    <style type="text/css">
+        .step-container{
+            width: 100%;
+            font-family: '微软雅黑 light', '微软雅黑';
+            background-color: #1b6d85;
+        }
+        .step-container .step-header{
+            height: 90px;
+            width: 180px;
+            font-size: 24px;
+            text-align: center;
+            line-height: 90px;
+            background: rgb(10,97,140);
+            position: absolute;
+            top:10px;
+            left: 10px;
+        }
+        .step-container .step-body{
+            height: 90px;
+            width: 1075px;
+            font-size: 24px;
+            text-align: left;
+            line-height: 90px;
+            position: absolute;
+            top:10px;
+            left: 200px;
+            background-color:rgb(176,205,223);
+            color: whitesmoke;
+        }
+        .step-body .active{
+            background-color: rgb(10,97,140);
+            color: rgb(1,31,121);
+        }
+        .step-body .active span{
+            border: 1px solid rgb(1,31,121);
+        }
+        .step-con-slips{
+            display: inline-block;
+            width:200px ;
+            text-align: center;
+        }
+        .step-con-slips.step-width{
+            width:300px ;
+        }
+        .step-con-slips span{
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: 1px solid whitesmoke;
+            line-height: 30px;
+
+        }
+    </style>
+    <script src="../scripts/jquery.js" type="text/javascript"></script>
+</head>
+<body>
+<div class="step-container">
+    <!--<div class="step-header">-->
+        <!--<img/>-->
+        <!--<span>发卡</span>-->
+    <!--</div>-->
+    <!--<div class="step-body">-->
+        <!--<a class="active step-con-slips">-->
+            <!--<span>1</span>-->
+            <!--啊啊-->
+        <!--</a>-->
+
+
+    <!--</div>-->
+</div>
+<script>
+    $(document).ready(function() {
+//       alert("dddd");
+        var ss= "卡种选择,信息采集,信息补充,卡片领取".split(",");
+        step(ss, 1, "发卡", "");
+    })
+
+    function step(steps, curnum, stepname, curimg) {
+//    alert("ddddd");
+        alert(curnum);
+        var htmlstr = "<div class=\"step-header\"><img/><span>" + stepname + "</span></div><div class=\"step-body\">";
+        for (var i in steps) {
+//                        alert(i);
+            if (i <= curnum)
+                htmlstr += "<a class=\"step-con-slips active\"><span class='active'>" + (parseInt(i) + 1) + "</span>" + steps[i] + "</a>";
+            else {
+                htmlstr += "<a class=\"step-con-slips\"><span>" + (parseInt(i) + 1) + "</span>" + steps[i] + "</a>";
+            }
+        }
+        htmlstr += "</div>";
+        $(".step-container").append(htmlstr);
+    }
+
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="css/main.css" type="text/css" />
+    <link rel="stylesheet" href="css/addCard.css" type="text/css" />
+    <script src="../js/vkboard.js"></script>
+    <script src="../js/vkboard_helper.js"></script>
+    <script src="../lib/jquery/jquery-1.10.2.min.js"></script>
+    <script src="../js/simulator.js"></script>
+    <script src="../js/Utils.js"></script>
+    <script src="../js/hotkey.js"></script>
+    <script src="../js/application.js"></script>
+    <script src="../js/displayFormat.js"></script>
+    <script src="../js/ModuleAmountInput.js"></script>
+    <script src="../js/livingBroadcast.js"></script>
+    <script src="../lib/jquery/jquery.MaskedInput.js"></script>
+    <script src="../lib/inspur/js/inspurTools.js"></script>
+    <style>
+		input,button,select,textarea{outline:none;}
+		.add-tips{
+			margin: auto;
+			font-size:26px;
+			color:red;
+			text-align:center;
+		}
+		.add-btn{
+			width:140px;
+			height:50px;
+			border-radius:25px;
+			border:none;
+			background:rgb(26,188,159);
+			font-size:24px;
+			color:white;
+		}
+		.add-btn:active{
+			-webkit-transform: scale(0.8);
+			-webkit-transition: -webkit-transform 0.8s;
+			transform: scale(0.8);
+			transition: transform 0.8s;	
+		}
+    </style>
+</head>
+<body style="width: 100%; height: 100%"
+      data-bg="img/BackGround.jpg"
+      data-maxkeylen="4"
+      data-minkeylen="0"
+      data-activekeys="Num,Backspace,Clear,Enter,Cancel"
+      data-terminatorkeys="Cancel,Enter">
+
+<div class="card-contain">
+    <table>
+        <tr>
+            <td>设备号：<span data-ddread="@.s.c.term.TerminalID">898987898</span></td>
+           <!--  <td>虚拟柜员号：<span>999898989</span></td> -->
+		    <td>机构号：<span data-ddread="@.s.c.term.BankID">983984958</span></td>
+        </tr>
+        <tr>
+           
+            <!-- <td>机构名称：<span>便携式发卡机</span></td> -->
+        </tr>
+        <tr>
+            <!-- <td>卡产品代码：<input id="Ccode" class="add-input"/><span id="cardcode" class="select-caret"></span></td> -->
+            <td>卡产品名称：<input id="Cname" class="add-input"/><span id="cardname" class="select-caret"></span></td>
+        </tr>
+    </table>
+    <hr>
+    <table>
+        <tr>
+		<td><button class="add-btn">清空</button></td>
+            <td>起始号码：</td><td><input id="startnum1" class="add-input"  maxlength="18"/></td>
+            <td>数量：</td><td><input id="num1" class="add-input3" maxlength="3"/></td>
+            <td>终止号码：</td><td><input id="endnum1" class="add-input" maxlength="18"/></td>
+        </tr>
+        <tr>
+		<td><button class="add-btn">清空</button></td>
+            <td>起始号码：</td><td><input id="startnum2" class="add-input" maxlength="18"/></td>
+            <td>数量：</td><td><input id="num2" class="add-input3" maxlength="3"/></td>
+            <td>终止号码：</td><td><input id="endnum2" class="add-input" maxlength="18"/></td>
+        </tr>
+        <tr>
+		<td><button class="add-btn">清空</button></td>
+            <td>起始号码：</td><td><input id="startnum3" class="add-input" maxlength="18"/></td>
+            <td>数量：</td><td><input id="num3" class="add-input3" maxlength="3"/></td>
+            <td>终止号码：</td><td><input id="endnum3" class="add-input" maxlength="18"/></td>
+        </tr>
+    </table>
+    <span>总加卡数：</span><span id="allnum"></span><span> 张</span>
+</div>
+
+<div class="add-tips"></div>
+<div class="select-cardcode">
+    <ul>
+    </ul>
+</div>
+
+<!-- <div class="select-cardname">
+    <ul>
+    </ul>
+</div> -->
+
+<div id="btnEnter" class="btn F8"
+     data-button=""
+     data-hotkey="F8,Enter"
+     data-winput="true"
+     data-override="false"
+     data-styleN="styBtnN"
+     data-styleD="styBtnD"
+     data-stylep="styBtnP"><div class="SOPbtnText">完成</div></div>
+
+<div id="btnExit" class="btn F4"
+     data-button=""
+     data-hotkey="F4, Cancel"
+     data-ret="Cancel"
+     data-stylen="styBtnN"
+     data-stylep="styBtnP"><div class="SOPbtnText">取消</div></div>
+
+<script>
+   // log.info("获取的卡箱加卡信息:"+dict.GetString("@.v.g.tmp.Value"));
+  //  var jsonAddCardInfo = JSON.parse(dict.GetString("@.v.g.tmp.Value"));
+ //  $$.setDivEnable('btnEnter', false);
+   var CardType="";				//卡产品代码：
+
+    var jsonAddCardInfo =
+    {
+        "CURRENT":
+        {
+            "DevType":"CRD",
+            "Number":1,
+            "Name":"卡箱1",
+            "Count":"22",
+            "CardType":"YRJGF00001",
+            "Status":"YES",
+            "CardName":"IC借记卡",
+            "MediaType":""
+        },
+        "CRD":[{"Number":1,"Name":"卡箱1","Count":"22","CardType":"YRJGF00001","Status":"YES","CardName":"IC借记卡","MediaType":""}],"CPM":[]};
+   
+	var code = ["20"];
+    var Cname = ["IC普卡"];
+	var Bnumarr = ["111111111111111111##22222222##33333333","44444444##55555555##66666666","777777777##88888888##99999999"];
+
+	var code =	dict.GetString("@.v.u.ADD.CardCode");
+//	log.info("code的类型"+typeof(code));
+	code = code.split("||");
+	//log.info("code的类型2"+typeof(code));
+	var Cname =	dict.GetString("@.v.u.ADD.CardName");
+	Cname = Cname.split("||");
+	var Bnumarr = dict.GetString("@.v.u.ADD.CardInit");
+    Bnumarr=Bnumarr.split("||");
+	var arr1=[];
+	var arr2=[];
+	var Enumarr = dict.GetString("@.v.u.ADD.CardEnd");
+    Enumarr=Enumarr.split("||");
+	var numarr = dict.GetString("@.v.u.ADD.CardNum");
+    numarr=numarr.split("||");
+	log.info("卡产品代码："+code+"    卡产品名称："+Cname +"     起始卡号段："+Bnumarr+"     结束卡号段："+Enumarr+"    加卡数量："+numarr);
+    
+	$("document").ready(function(){
+       // CreateSelect(".select-cardcode",code);
+        CreateSelect(".select-cardcode",Cname,code);
+     //   Selectcard(".select-cardcode","#cardcode","#Ccode");
+        Selectcard(".select-cardcode","#cardname","#Cname");
+        GetEndNumber("#num1","#startnum1","#endnum1");
+        GetEndNumber("#num2","#startnum2","#endnum2");
+        GetEndNumber("#num3","#startnum3","#endnum3");
+		
+		for (var i=0;i<Bnumarr.length;i++){
+			arr1[i] = Bnumarr[i].split("##");
+		}
+		for (var j=0;j<Bnumarr.length;j++){
+			arr2[j] = Enumarr[j].split("##");
+		}
+    });
+
+    function CreateSelect(element,arr,brr){
+        var html="";
+        for(var i=0;i<arr.length;i++){
+            html =html+"<li value='"+brr[i]+"'>"+arr[i]+"</li>";
+        }
+//        alert(html);
+        $(element+" ul").append(html);
+    }
+//    选择卡类型操作
+    function Selectcard(a,b,c){
+        $(b).click(function(){
+            if($(a).is(":hidden") ){
+                $(a).fadeIn();
+            }else{
+                $(a).fadeOut();
+            }
+        });
+        $(a+" ul li").each(function(){
+            $(this).click(function(){
+//            alert($(this).val());
+				CardType = $(this).val();
+				//alert(CardType);
+                $(c).val($(this).html());
+                $(a).fadeOut();
+            });
+
+        });
+    }
+//获取终止卡号：数量、起始号码，终止号码
+    var flag =false;
+    function GetEndNumber(a,b,c){
+        $(a).blur(function(){
+            var number =$(b).val();
+            console.log(number.length);
+            if(number == null ||number =="" || number.length <18){
+                $$.setDivEnable('btnEnter', flag);
+            }else{
+                var tmp = number.substr(0,14);
+                var end = number.substr(14);
+                end =+end;
+                var count = $(a).val();
+                count =+count;
+                end = count+end -1;
+//                console.log(end);
+                var n = tmp+ end +"";
+//                console.log(n);
+                $(c).val(n);
+                AllCardNum();
+                flag =true;
+                $$.setDivEnable('btnEnter', flag);
+
+            }
+        });
+    }
+//    加卡总张数
+    function AllCardNum(){
+        var n1 = parseInt($("#num1").val());
+        var n2 = parseInt($("#num2").val());
+        var n3 = parseInt($("#num3").val());
+        var m;
+        if(isNaN(n2) && isNaN(n3)){
+             m =n1;
+        }else if(isNaN(n3)){
+            m =n1+n2;
+        }else{
+            m = n1 + n2 + n3;
+        }
+        $("#allnum").html(m);
+
+    }
+
+	//清空数据
+	$(".add-btn").click(function(){
+	//alert("aaa");
+		$(this).parent().parent().find("input").val("");
+	});
+	
+	//点击确认操作进行相关数据的处理
+var target = "false";
+    $("#btnEnter").click(function(){
+	
+	var n ="";
+        var jsonAddCardNum=[
+            {},{},{}
+        ];
+//        获取各种输入的数值：
+        var count =$("#allnum").html();
+      //  var CardType =$("#Ccode").val();
+        var CardName =$("#Cname").val();
+
+
+        jsonAddCardInfo.CURRENT.DevType = "CRD";
+        jsonAddCardInfo.CURRENT.Number = parseInt(1);
+        jsonAddCardInfo.CURRENT.Name = "卡箱1";
+        jsonAddCardInfo.CURRENT.Count = count;
+        jsonAddCardInfo.CURRENT.CardType = CardType;
+        jsonAddCardInfo.CURRENT.Status = "YES";
+        jsonAddCardInfo.CURRENT.CardName = CardName;
+        jsonAddCardInfo.CURRENT.MediaType = "";
+        jsonAddCardInfo.CRD[0].Name= "卡箱1";
+        jsonAddCardInfo.CRD[0].Count= count;
+        jsonAddCardInfo.CRD[0].CardType= CardType;
+        jsonAddCardInfo.CRD[0].Status= "YES";
+        jsonAddCardInfo.CRD[0].CardName= CardName;
+        jsonAddCardInfo.CRD[0].MediaType= "";
+        jsonAddCardInfo.CPM={};
+
+        var bgone =$("#startnum1").val();
+        var endone =$("#endnum1").val();
+        var bgtwo =$("#startnum2").val();
+        var endtwo =$("#endnum2").val();
+        var bgthree =$("#startnum3").val();
+        var endthree =$("#endnum3").val();
+        var n1 = parseInt($("#num1").val());
+        var n2 = parseInt($("#num2").val());
+        var n3 = parseInt($("#num3").val());
+        jsonAddCardNum[0].Number =parseInt(1);
+        jsonAddCardNum[0].CardType = CardType;
+        jsonAddCardNum[0].BeginCardNum = bgone;
+        jsonAddCardNum[0].EndCardNum = endone;
+        jsonAddCardNum[0].CardNum = n1;
+        jsonAddCardNum[1].Number =parseInt(1);
+        jsonAddCardNum[1].CardType = CardType;
+        jsonAddCardNum[1].BeginCardNum = bgtwo;
+        jsonAddCardNum[1].EndCardNum = endtwo;
+        jsonAddCardNum[1].CardNum = n2;
+        jsonAddCardNum[2].Number =parseInt(1);
+        jsonAddCardNum[2].CardType = CardType;
+        jsonAddCardNum[2].BeginCardNum = bgthree;
+        jsonAddCardNum[2].EndCardNum = endthree;
+        jsonAddCardNum[2].CardNum = n3;
+
+//        console.log(JSON.stringify(jsonAddCardNum));
+//        console.log(JSON.stringify(jsonAddCardInfo));
+		for(var i=0;i<code.length;i++){
+			
+			 for(var j=0;j<arr1.length;j++){
+			  var XN1 = jsonAddCardNum[j].BeginCardNum;
+				var XN2 = arr1[i][j];
+                 log.info("XN1 ====="+XN1+"    XN2====="+XN2);
+				XN1=XN1.substr(0,6);
+				XN2=XN2.substr(0,6);
+				//console.log("XN1====="+XN1);
+			//	console.log("XN2====="+XN2);
+				if(XN1 == XN2 ){
+				target = "true";
+					continue;
+				}else{
+				target = "false";
+				n=j+1;
+				break;
+				}
+			 }
+			 
+		}
+		
+        log.info("加卡信息："+JSON.stringify(jsonAddCardInfo));
+        log.info("加卡的卡号信息："+JSON.stringify(jsonAddCardNum));
+        dict.SetString("@.v.g.tmp.Value", JSON.stringify(jsonAddCardInfo));
+        dict.SetString("@.v.g.tmp.Value4", JSON.stringify(jsonAddCardNum));
+		if(target == "true"){
+			evt.pageFinished("continue");
+		}else{
+		var str = "提示：凭证起始段"+n+"不包含或部分包含在虚拟凭证信息内，请重新输入";
+			$(".add-tips").empty();
+			$(".add-tips").append(str);
+			$(".add-tips").show();
+			setTimeout(function () {
+                $(".add-tips").fadeOut(400);
+            }, 6000);
+		}
+        
+    });
+</script>
+</body>
+</html>

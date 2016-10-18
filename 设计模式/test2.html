@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    function foo(){
+        alert(this);
+        console.log(this.a);
+    }
+    function doFoo(fn){
+        fn();           // doFoo(obj.foo);  obj.foo 是 foo() 的引用
+                        // 这里等于直接 foo(); 相当于 window.foo() 其内部的  this  ===  window
+    }
+    function doFoo2(o){
+        o.foo();        // 理解上面了 就好理解这个.    o.foo()    this === o
+    }
+    var obj = {
+        a: 2,
+        foo: foo
+    };
+    var a = "I'm an a";
+    doFoo(obj.foo);
+    doFoo2(obj);
+
+    //    var func = (function () {
+//        var a4 = 1;
+//
+//        return function () {
+//            a4++;
+//            console.log("a4:" + a4);
+//        }
+//    })();
+//
+//    var f = func;
+//    alert(func);
+//    alert(f());
+//    f(); // 输出：2
+//    f(); // 输出：3
+//    f(); // 输出：4
+//    f(); // 输出：5
+</script>
+</body>
+</html>

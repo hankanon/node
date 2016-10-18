@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<title>字符串转xml初始化文本框</title> 
+</head> 
+
+<body> 
+xml数据item节点1的值<br/> 
+用户名：<input type="text" id="username" /><br/> 
+密码：<input type="text" id="password" /><br/> 
+从xml属性中取得的性别值：<input type="text" id="sex1" /> 
+<br/><br/> 
+xml数据item节点2的值<br/> 
+用户名：<input type="text" id="username2" /><br/> 
+密码：<input type="text" id="password2" /><br/> 
+从xml属性中取得的性别值：<input type="text" id="sex2" /> 
+
+
+<script language="javascript" type="text/javascript" > 
+/* 
+* 字符串返回xml对象 
+* @param str:xml字符串 
+* ---------------------- 
+* 程序编写：李建东 
+* 编写时间：2010-12-04 22:42 
+* 联系电话：135 1985-02-07 
+* QQ号码：813751/657597 
+*/ 
+function xml(str){ 
+    if(document.all){ 
+        var xmlDom=new ActiveXObject("Microsoft.XMLDOM") ; 
+        xmlDom.loadXML(str) ; 
+        return xmlDom ; 
+    }else{ 
+        return new DOMParser().parseFromString(str, "text/xml"); 
+    } 
+} 
+/* 
+* 字符串返回xml对象函数具体应用 
+* ---------------------- 
+* 程序编写：李建东 
+* 编写时间：2010-12-04 22:44 
+* 联系电话：135 1985-02-07 
+* QQ号码：813751/657597 
+*/ 
+//xml字符串 
+var str = "" 
+str += "<?xml version=\"1.0\" encoding=\"utf-8\" ?>"; 
+str += "<root>"; 
+str += "<item>"; 
+str += "<username sex=\"男\">admin</username>"; 
+str += "<password>123456</password>"; 
+str += "</item>"; 
+str += "<item>"; 
+str += "<username sex=\"女\">admin2</username>"; 
+str += "<password>654321</password>"; 
+str += "</item>"; 
+str += "</root>"; 
+//根据ID取容器对象，以减少写document.getElementById() 
+var $ = function(id){return document.getElementById(id);}; 
+//调用函数将字符器型的xml数据转换成xml文档 
+var xmldoc = xml(str).getElementsByTagName("item");
+alert(xmldoc[0].getElementsByTagName("username")[0].getAttribute('sex')); 
+//初始第1节点数据 
+$("username").value = xmldoc[0].getElementsByTagName("username").item(0).text; 
+$("password").value = xmldoc[0].getElementsByTagName("password").item(0).text; 
+//初始第2节点数据 
+$("username2").value = xmldoc[1].getElementsByTagName("username").item(0).text; 
+$("password2").value = xmldoc[1].getElementsByTagName("password").item(0).text; 
+//根据xml节点属性读取属性值 
+$("sex1").value = xmldoc[0].getElementsByTagName("username").item(0).attributes.getNamedItem("sex").value; 
+$("sex2").value = xmldoc[1].getElementsByTagName("username").item(0).attributes.getNamedItem("sex").value; 
+// 
+
+function XmlParse(xml,tagname,itemname,index){
+		Trc.Info("MsgParse.js XmlParse");
+		
+		var xmlDoc = new ActiveXObject("Microsoft.XMLDOM");
+		if(xmlDoc == null)
+		{
+			Trc.Info("Create xmlDoc failure");
+			return "";
+		}
+		
+		try
+		{
+			xmlDoc.async = "false";
+			xmlDoc.loadXML(xml);
+			
+			// nodeType ： 3 代表为字符串元素
+			if( xmlDoc.getElementsByTagName(tagname)[index] != null &&
+				xmlDoc.getElementsByTagName(tagname)[index].childNodes[0] != null &&
+				xmlDoc.getElementsByTagName(tagname)[index].childNodes[0].nodeType == 3 &&		//
+				xmlDoc.getElementsByTagName(tagname)[index].childNodes[0].nodeValue != null)
+			{
+				//Trc.Info("getElementeByTagName , tagname: " + tagname + " : " + xmlDoc.getElementsByTagName(tagname)[index].childNodes[0].nodeValue);
+				return xmlDoc.getElementsByTagName(tagname)[index].childNodes[0].nodeValue;
+			}
+			else
+			{
+				Trc.Info("tagname is empty");
+				return "";
+			}
+		}
+		catch(err)
+		{
+			Trc.Info("xml : " + xml);
+			Trc.Info("tagname : " + tagname);
+			Trc.Info("index : " + index);
+			Trc.Error("runtime err: " + err.description);
+		}
+		
+		return "";
+	}
+
+
+
+</script> 
+</body> 
+</html>

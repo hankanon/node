@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>jQuery制作的下拉选项菜单 - 站长素材</title>
+<link rel="stylesheet" type="text/css" href="css/main.css" />
+<style type="text/css">
+	body{
+		background: white;
+	}
+#dropdown{width:186px; margin:80px auto; position:relative}
+#dropdown p{width:150px; height:24px; line-height:24px; padding-left:4px; padding-right:30px; border:1px solid #a9c9e2; background:#e8f5fe url(arrow.gif) no-repeat right 4px; color:#807a62; cursor:pointer}
+#dropdown ul{width:184px; background:#e8f5fe; margin-top:2px; border:1px solid #a9c9e2; position:absolute; display:none}
+#dropdown ul li{height:24px; line-height:24px; text-indent:10px}
+#dropdown ul li a{display:block; height:24px; color:#807a62; text-decoration:none}
+#dropdown ul li a:hover{background:#c6dbfc; color:#369}
+#result{margin-top:10px;text-align:center}
+</style>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$("#dropdown p").click(function(){
+		var ul = $("#dropdown ul");
+		if(ul.css("display")=="none"){
+			ul.slideDown("fast");
+		}else{
+			ul.slideUp("fast");
+		}
+	});
+	$("#dropdown ul li a").click(function(){
+		var txt = $(this).text();
+		$("#dropdown p").html(txt);
+		var value = $(this).attr("rel");
+		$("#dropdown ul").hide();
+		$("#result").html("您选择了"+txt+"，值为："+value);
+	});
+	
+});
+</script>
+</head>
+
+<body>
+<div id="main">
+  <h2 class="top_title">使用CSS和jQuery制作漂亮的下拉选项菜单</h2>
+  <div id="dropdown">
+      <p>请选择城市</p>
+      <ul>
+         <li><a href="#" rel="1">长沙</a></li>
+         <li><a href="#" rel="2">北京</a></li>
+         <li><a href="#" rel="3">南京</a></li>
+         <li><a href="#" rel="4">堪培拉</a></li>
+         <li><a href="#" rel="5">多伦多</a></li>
+      </ul>
+  </div>
+  <div id="result"></div>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+</div>
+
+</body>
+</html>

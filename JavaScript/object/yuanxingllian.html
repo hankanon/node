@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    function father (){
+        this.name='father';
+        this.val='father has'
+    }
+
+    father.prototype.getValue = function(){
+        return this.val;
+    };
+
+    father.prototype.getName = function(){
+        return this.name;
+    };
+
+    function son(){
+        this.name='son';
+        this.age = 33;
+    }
+
+    son.prototype = new father();
+
+    son.prototype.getAge = function(){
+        return this.age;
+    };
+    son.prototype.getName = function(){
+        return this.name;
+    };
+    var n = new son();
+    alert(n.getName());
+    alert(n.name);
+    alert(n.val);
+    alert(n.age);
+    alert(n.getValue());
+    alert(n.getAge());
+</script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script language="javascript" type="text/javascript" src="../scripts/jquery.js"></script>
+
+    <title></title>
+
+</head>
+<body>
+<style>
+    .time_count{
+        position: absolute;
+        right: 100px;
+        top:40px;
+        color: rgb(237,58,54);
+        font-family: digiface;
+        font-size: 48px;
+        margin-left: 20px;
+    }
+</style>
+<div>
+    <span class="time_count">6</span><button onclick="dddd()">重置计时</button>
+</div>
+
+<script>
+    var time_count=16;       //初始化倒计时数字
+    var idtime='';
+    function timecount(){
+        $('.time_count').html(time_count);
+        idtime = setInterval(function () {  //setInterval一个定是函数，返回一个ID
+            if (time_count > 0) {
+                time_count--;
+                $('.time_count').html(time_count);              //显示计时数字
+                if(time_count == 0){
+                    //抛出事件计时结束
+                    alert("aaaa");
+                }
+            } else {
+                time_count = 6;
+                clearInterval(idtime);      //取消setInterval()定时函数的默认操作，参数必须为setInterval的返回ＩＤ
+                                            //重新计数
+            }
+        }, 1000);
+    }
+    $(function(){
+    timecount();
+    });
+    function dddd(){
+        timecount();
+    }
+</script>
+</body>
+</html>

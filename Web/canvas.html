@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        /*.canvas{*/
+            /*width: 300px;*/
+            /*height: 300px;*/
+        /*}*/
+    </style>
+</head>
+<body>
+<canvas id="myCanvas" class="canvas">
+
+</canvas>
+
+<script>
+    var fun = function (){
+//        var num="10010202303020220202020300302020";
+//        var n =num.length/4;
+////        alert(num.length);
+//        var a = new Array();
+//        for (var i=0;i<n;i++){
+//            a[i]=num.substring(4*i,4+(4*i));
+////            alert(a[i]);
+//        }
+        var str= "1001=数学;0202=英语;3030=物理;2022=生物;0202=化学;0203=科学;0030=语文;2020=体育";
+        var b = str.split(';');
+        var arr=[];
+        var json={
+            "name": "root",
+            "label": "root",
+            "hint": "日常管理",
+            "items":[]
+        };
+        for(var i=0;i< b.length;i++){
+            var a ={};
+            arr= b[i].split('=');
+            a.event= arr[0];
+            a.label=arr[1];
+            a.name= 'num'+i;
+            json.items.push(a);
+//            alert(json.item[i]);
+        }
+        var s =JSON.stringify(json);
+       console.log(s);
+//        alert(b.length);
+//        alert(b[0]);
+    };
+    fun();
+</script>
+</body>
+</html>

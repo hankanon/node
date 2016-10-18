@@ -1,0 +1,33 @@
+<html>
+<head>
+    <script language="javascript" type="text/javascript" src="../scripts/jquery.js"></script>
+</head>
+
+<body>
+response here: <p id="lblResponse">fill me in</p>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $.ajax({
+            url: 'http://127.0.0.1:8081/',
+            dataType: "jsonp",
+            data: '{"data": "TEST"}',
+            type: 'POST',
+            path: '/index.htm',
+            jsonpCallback: 'callback', // this is not relevant to the POST anymore
+            success: function (data) {
+//                var ret = jQuery.parseJSON(data);
+//                $('#lblResponse').html(ret.msg);
+                $('#lblResponse').html(data);
+                console.log('Success: ')
+            },
+            error: function (xhr, status, error) {
+                console.log('Error: ' + error.message);
+                $('#lblResponse').html('Error connecting to the server.');
+            },
+        });
+    });
+</script>
+
+</body>
+</html>

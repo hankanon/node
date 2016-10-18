@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="../lib/jquery-1.8.3.min.js"></script>
+    <script src="../js/countDown.js"></script>
+    <script src="../js/Utils.js"></script>
+    <script src="../js/simulator.js"></script>
+    <script src="../js/hotkey.js"></script>
+    <script src="../js/application.js"></script>
+    <script src="../js/jquery.dataTables.js"></script>
+    <script src="../js/displayFormat.js"></script>
+    <script src="../js/ModuleAmountInput.js"></script>
+    <script src="../js/livingBroadcast.js"></script>
+    <!--<script src="jquery-1.11.0.min.js"></script>-->
+    <title></title>
+    <style>
+        .content{
+            position: absolute;
+            top: 70px;
+            left: 14px;
+            width: 1040px;
+            font-size: 25px;
+            color: black;
+            font-family: '微软雅黑 light', '微软雅黑';
+        }
+    </style>
+</head>
+<body>
+<div style="position: absolute;left: 350px;top: 0px;text-align: center;font-size: 35px;color: black;font-weight: bold;">发卡机清回收箱清单</div>
+<div class="content">
+    <table>
+        <tr>
+            <td style="width: 250px">设备号：<span id="terminalId">56030a001</span></td>
+            <td style="width: 250px">交易日期：<span id="Date">20160822</span></td>
+            <td style="width: 250px">交易时间：<span id="Time">123456</span></td>
+            <td style="width: 250px">交易类型：<span>清回收箱</span></td>
+        </tr>
+    </table>
+    <table border="1px solid black;" cellspacing="0" style="text-align: center;line-height: 50px" id="tab-show">
+        <tr style="text-align: left;"><td colspan="6">吞卡明细情况</td></tr>
+        <tr>
+            <td width="110">卡箱序号</td>
+            <td width="110">吞卡类型</td>
+            <td width="300">卡号</td>
+            <td width="110">交易类型</td>
+            <td width="220">吞卡时间</td>
+            <td width="110">交易结果</td>
+        </tr>
+    </table>
+</div>
+<script>
+    $(document).ready(function()
+    {
+
+
+        var Fso = new ActiveXObject("Scripting.FileSystemObject");
+        var f = Fso.OpenTextFile("d:\\atm\\SOPClearBox.txt",1);
+        var sText = f.ReadAll().split("\r\n");
+        $("#terminalId").html(sText[0]);
+        $("#Date").html(sText[1]);
+        $("#Time").html(sText[2]);
+        var str = sText[3];
+        var json = JSON.parse(str);
+        var html ="";
+        for(var i=0;i<json.CardBox.length;i++){
+            html =html+"<tr><td>"+json.CardBox[i]+"</td>"+"<td>"+json.CardName[i] +"</td>"+"<td>"+json.CardNO[i] +"</td>"
+            +"<td>"+json.TransType[i]+"</td>"+"<td>"+json.Date[i] +"</td>"+"<td>"+json.Resault[i] +"</td></tr>"
+        }
+        $("#tab-show").append(html);
+    });
+</script>
+</body>
+</html>

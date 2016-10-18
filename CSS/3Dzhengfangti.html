@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .container{
+            -webkit-perspective:2000px;
+            -webkit-perspective-origin:50% 50%;
+            margin-top:100px;
+            /*overflow: hidden;*/
+        }
+        .pagegroup{
+            width: 200px;
+            height: 200px;
+            margin: 0 auto;
+            -webkit-transform-style: preserve-3D;
+            position: relative;
+        }
+        .page{
+            width: 170px;
+            height: 170px;
+            padding: 14px;
+            line-height: 170px;
+            font-size: 170px;
+            color: white;
+            background-color: rgba(234,50,50,0.6);
+            text-align: center;
+            position: absolute;
+            border: 1px solid #fff;
+        }
+        .pagegroup:hover{
+            -webkit-transform:rotate3d(1, 1, 1,180deg);
+            -webkit-transition:5s;
+        }
+        #face1{
+
+            -webkit-transform-origin:bottom;
+        }
+        #face2{
+
+            -webkit-transform-origin:right;     /*顺着X轴右边旋转90度*/
+            -webkit-transform:rotateY(90deg);
+        }
+        #face3{
+
+            -webkit-transform-origin:bottom;
+            -webkit-transform:translateZ(200px);
+        }
+        #face4{
+
+            -webkit-transform-origin:left;
+            -webkit-transform:rotateY(-90deg);
+        }
+        #face5{
+  ;
+            -webkit-transform-origin:top;
+            -webkit-transform:rotateX(90deg);
+        }
+        #face6{
+
+            -webkit-transform-origin: bottom;
+            -webkit-transform: rotateX(-90deg);
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="pagegroup">
+        <div class="page" id="face1">
+        1
+        </div>
+        <div class="page" id="face2">
+        2
+        </div>
+        <div class="page" id="face3">
+        3
+        </div>
+        <div class="page" id="face4">
+        4
+        </div>
+        <div class="page" id="face5">
+        5
+        </div>
+        <div class="page" id="face6">
+        6
+        </div>
+
+    </div>
+</div>
+</body>
+</html>

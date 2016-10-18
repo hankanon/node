@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="../lib/jquery-1.8.3.min.js"></script>
+    <script src="jquery-1.11.0.min.js"></script>
+    <title></title>
+    <style>
+        .content{
+            position: absolute;
+            top: 130px;
+            left: 14px;
+            width: 1040px;
+            font-size: 25px;
+            color: black;
+            font-family: '微软雅黑 light', '微软雅黑';
+        }
+        table tr td{
+            height: 40px;
+            line-height: 40px;
+        }
+    </style>
+</head>
+<body>
+<div style="position: absolute;left: 400px;top: 60px;text-align: center;font-size: 35px;color: black;font-weight: bold;">加卡明细清单</div>
+<div class="content">
+    <table>
+        <tr>
+            <td width="400">设备号：<span id="terminalId"></span></td>
+            <td width="400">交易日期：<span id="Date"></span></td>
+            <td width="400">交易时间：<span id="Time"></span></td>
+        </tr>
+    </table>
+    <br/><br/>
+    <table border="1px solid black;" cellspacing="0" style="text-align: center;line-height: 50px">
+        <tr>
+            <td width="150">卡箱序号</td>
+            <td width="250">卡产品名称</td>
+            <td width="400">起始凭证号</td>
+            <td width="400">结束凭证号</td>
+            <td width="100">数量</td>
+        </tr>
+        <tr>
+            <td id="a0">1</td>
+            <td id="b0"></td>
+            <td id="c0"></td>
+            <td id="d0"></td>
+            <td id="e0"></td>
+        </tr>
+        <tr>
+            <td id="a1">1</td>
+            <td id="b1"></td>
+            <td id="c1"></td>
+            <td id="d1"></td>
+            <td id="e1"></td>
+        </tr>
+        <tr>
+            <td id="a2">1</td>
+            <td id="b2"></td>
+            <td id="c2"></td>
+            <td id="d2"></td>
+            <td id="e2"></td>
+        </tr>
+    </table>
+</div>
+<script>
+    $(document).ready(function()
+    {
+
+
+        var Fso = new ActiveXObject("Scripting.FileSystemObject");
+        var f = Fso.OpenTextFile("d:\\atm\\SOPAddCard.txt",1);
+        var sText = f.ReadAll().split("\r\n");
+
+        $("#a0").html(sText[0]);
+        $("#b0").html(sText[1]);
+        $("#c0").html(sText[2]);
+        $("#d0").html(sText[3]);
+        $("#e0").html(sText[4]);
+        $("#a1").html(sText[5]);
+        $("#b1").html(sText[6]);
+        $("#c1").html(sText[7]);
+        $("#d1").html(sText[8]);
+        $("#e1").html(sText[9]);
+        $("#a2").html(sText[10]);
+        $("#b2").html(sText[11]);
+        $("#c2").html(sText[12]);
+        $("#d2").html(sText[13]);
+        $("#e2").html(sText[14]);
+        $("#terminalId").html(sText[15]);
+        $("#Date").html(sText[16]);
+        $("#Time").html(sText[17]);
+
+    });
+</script>
+</body>
+</html>

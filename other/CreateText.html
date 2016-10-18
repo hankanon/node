@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    function CreateText(){
+        try
+        {
+            var sFilePath ="d:\\CustomerSign.txt";
+            var fso = new ActiveXObject("Scripting.FileSystemObject");
+            if(fso.FileExists(sFilePath))
+            {
+                fso.DeleteFile(sFilePath);
+                console.log("MainService.js createTxtFile DELETE OLD TXT SUCCESS");
+            }else{
+                console.log("MainService.js createTxtFile OLD TXT IS NO EXIST");
+            }
+        }
+        catch(err)
+        {
+
+            console.log("runtime err: " + err.description);
+            return "failure";
+        }
+
+    //    var transType = Dict.GetString("@.v.t.TransType");
+        var transType = "IssueCard";
+        var transName ="";									//交易名称
+        if(transType == "IssueCard"){
+            transName = "C11004-开卡";
+        }else if(transType == "Sign"){
+            transName = "电子银行业务签约";
+        }else{
+            transName = "银行卡激活";
+        }
+
+
+        //交易日期
+       // var Date = Dict.GetString("#.%Y/%m/%d");
+        var Date ="";
+        //客户编号
+        //var sCusID = Dict.GetString("@.v.u.Customer.CstNo");
+            var sCusID = "86000000345345";
+        //户名
+        //var sCusName = Dict.GetStringFromUtf8("@.v.u.Customer.Name");
+        var sCusName = "小明";
+        //证件类型
+        var cusType = "身份证";
+        //证件号码：
+       // var idNumber = Dict.GetString("@.v.u.Customer.IDNumber");
+        var idNumber ="378935823759837529837";
+        //证件到期日：
+       // var EndDate = Dict.GetString("@.v.u.Customer.IDEndDate");
+        var EndDate ="2342342342";
+        //手机号码
+//        var phone = Dict.GetString("@.v.u.Customer.MobileNum");
+        var phone ="34875348756385";
+        //家庭住址
+       // var country = Dict.GetStringFromUtf8("@.v.u.Customer.Country");
+       // var province = Dict.GetStringFromUtf8("@.v.u.Customer.Province");
+       // var city = Dict.GetStringFromUtf8("@.v.u.Customer.City");
+      //  var address = Dict.GetStringFromUtf8("@.v.u.Customer.Address");
+      //  var homeAddress = country +province +city +address;
+       var homeAddress = "中国广东省中山市蓬江区三塘镇宋边坊村";
+        //办公地址
+       // var country1 = Dict.GetStringFromUtf8("@.v.u.Customer.NewCountry");
+       // var province2 = Dict.GetStringFromUtf8("@.v.u.Customer.NewProvince");
+       // var city3 = Dict.GetStringFromUtf8("@.v.u.Customer.NewCity");
+       // var address4 = Dict.GetStringFromUtf8("@.v.u.Customer.NewAddress");
+        // var officeAddress = country1 +province2 +city3 +address4;
+        var officeAddress ="中国广东省中山市蓬江区三塘镇宋边坊村";
+        //卡号
+//        var Account  = Dict.GetStringFromUtf8("@.v.u.Account");
+        var Account = "3467835872397598357";
+        //卡产品名称
+//        var CardName = Dict.GetStringFromUtf8("@.v.t.SelCardName");
+//        var cardno = Dict.GetString("@.v.t.SelCardType");
+//        var NoName = cardno + "-"+CardName;
+        var NoName ="20-IC普卡";
+        //账号
+//        var ZHNumber = Dict.SetString("@.v.g.func.Sign.account");
+        var ZHNumber = "347563475676843658";
+        //签约业务
+//        var Msg = Dict.GetString("@.v.g.func.Sign.PhoneMsg");
+          var Msg ="0";
+        var Msgstatus ="";
+        if (Msg == "0"){
+            Msgstatus ="已签约";
+        }else{
+            Msgstatus = "未签约";
+        }
+//        var SelfBank = Dict.GetString("@.v.g.func.Sign.SelfBank");
+        var SelfBank = "0";
+        var Bankstatus ="";
+        if(SelfBank == "0"){
+            Bankstatus ="已签约";
+        }else{
+            Bankstatus = "未签约";
+        }
+        //单笔交易限额
+//        var DBlimit = Dict.GetString("@.v.g.func.Sign.DBmoney") + "元";
+//        var Daylimit = Dict.GetString("@.v.g.func.Sign.Daymoney") + "元";
+         var DBlimit = "23532元";
+         var Daylimit ="3233423元";
+
+        //机构代号
+//        var bankid =  Dict.GetStringFromUtf8("@.s.c.term.BankID");
+        var bankid ="235235523";
+        //流水号
+//        var Seqno = Dict.GetString("@.s.h.SeqNo");
+       var Seqno ="23523523";
+        //复核授权
+//        var OperID = Dict.GetString("@.v.u.finger.ygcode");
+       var OperID ="3243";
+        //终端编号
+//        var terminalID = Dict.GetString("@.s.c.term.TerminalID");
+        //记账
+        var AccountNum = "9999199";
+
+
+
+        //创建新文件
+        try
+        {
+            var tf = fso.CreateTextFile("d:\\CustomerSign.txt",true);
+            //写入文件内容
+            tf.WriteLine(transName);
+            tf.WriteLine(Date);
+            tf.WriteLine(sCusID);
+            tf.WriteLine(sCusName);
+            tf.WriteLine(cusType);
+            tf.WriteLine(idNumber);
+            tf.WriteLine(EndDate);
+            tf.WriteLine(phone);
+            tf.WriteLine(homeAddress);
+            tf.WriteLine(officeAddress);
+            tf.WriteLine(Account);
+            tf.WriteLine(NoName);
+            tf.WriteLine(ZHNumber);
+            tf.WriteLine(Msgstatus);
+            tf.WriteLine(Bankstatus);
+            tf.WriteLine(DBlimit);
+            tf.WriteLine(Daylimit);
+            tf.WriteLine(bankid);
+            tf.WriteLine(Seqno);
+            tf.WriteLine(OperID);
+            tf.WriteLine(AccountNum);
+            //	tf.WriteLine(msgtype);
+            //	tf.WriteLine(newAccount);
+            //关闭文件
+            tf.Close();
+            return "success";
+        }
+        catch(err)
+        {
+            return "failure";
+            console.log("runtime err: " + err.description);
+        }
+    }
+    CreateText();
+</script>
+</body>
+</html>

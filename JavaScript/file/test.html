@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div class="btn" onclick="readFile()">
+    按钮读取
+</div>
+<div onclick="insertInfo()">
+    按钮写入
+</div>
+<script>
+    //进行本地文件的读写操作
+    var readFile = function() {
+//        alert("dddd");
+        var fso = new ActiveXObject("Scripting.FileSystemObject");
+        var f = fso.OpenTextFile("D:\\testfile.txt", 1);
+        var s = "";
+        while (!f.AtEndOfStream)
+            s += f.ReadLine() + "\n";
+        f.Close();
+        alert(s);
+//        return s;
+    };
+//本地文件写入
+    function insertInfo(){
+        var fso, tf;
+        var usrname = "asdfbsda",type = "支票";
+        var time = "201504040";
+        var money = "300000";
+        fso = new ActiveXObject("Scripting.FileSystemObject");
+        // 创建新文件
+        tf = fso.CreateTextFile("D:\\testfile.txt", true);
+        // 填写数据，并增加换行符
+        tf.WriteLine("用户姓名："+usrname) ;
+        // 增加3个空行
+        // tf.WriteBlankLines(1);
+        // 填写一行，不带换行符
+        tf.WriteLine("支票类型："+type);
+        tf.WriteLine("办理时间："+time);
+        tf.WriteLine("金额："+money);
+        // 关闭文件
+        tf.Close();
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    function SuperType(name){
+        this.name = name;
+    }
+    function SubType(name,age){
+//继承了SuperType，同时还传递了参数
+        SuperType.call(this, name);
+//实例属性
+        this.age = age;
+    }
+    var instance = new SubType("Tom",44);
+    alert(instance.name); //"Tom";
+    alert(instance.age); //44
+</script>
+</body>
+</html>

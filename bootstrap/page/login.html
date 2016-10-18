@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap的HTML标准模板</title>
+    <!-- Bootstrap -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <!--你自己的样式文件 -->
+    <link href="../css/main.css" rel="stylesheet">
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="login">
+    <span class="login-tips">登录框</span>
+    <form>
+        <span>账号：</span><input type="text" class="input"><br/>
+        <span>密码：</span><input type="password">
+    </form>
+    <div class="tip-login">
+        <span class="ani-wait"></span>
+    </div>
+    <div class="login-btn">
+        <button id="login" class="btn">登录</button><br/>
+    </div>
+    <div class="tips">
+        <span>已有账号？</span>
+        <button id="register" class="btn-register">注册</button>
+    </div>
+</div>
+
+<div class="register">
+
+</div>
+<script>
+    $("#login").click(function(){
+        $(".login form").hide();
+        $(".tip-login").fadeIn();
+    });
+
+    $("#register").click(function(){
+        $(".login").addClass("out");
+        $(".register").addClass("in");
+    });
+</script>
+</body>
+</html>

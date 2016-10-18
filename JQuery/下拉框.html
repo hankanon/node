@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <style>
+        html,body,div,span,h1,h2,h3,h4,h5,h6,p,pre,a,code,em,img,small,strong,sub,sup,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}
+        ol,ul{list-style:none}
+        .dropdown{width:186px; margin:80px auto; position:relative}
+        .dropdown p{width:150px; height:24px; line-height:24px; padding-left:4px; padding-right:30px; border:1px solid #a9c9e2;  color:#807a62; cursor:pointer}
+        .dropdown ul{width:184px; background:#e8f5fe; margin-top:2px; border:1px solid #a9c9e2; position:absolute; display:none}
+        .dropdown ul li{height:24px; line-height:24px; text-indent:10px}
+        .dropdown ul li a{display:block; height:24px; color:#807a62; text-decoration:none}
+        .dropdown ul li a:hover{background:#c6dbfc; color:#369}
+    </style>
+</head>
+<body>
+<div class="container">
+
+</div>
+<button onclick="btnfun()">按钮</button>
+<script>
+    var DownList = (function(){
+        var html="";
+        var num="";      //获取下拉框值
+        function getHtml(title,content){                //初始化生成下拉框
+            if(title== null || content==null){
+                return false;
+            }
+            var thtml = "";
+            thtml+= "<div class='dropdown'> <p>"+title+"</p><ul>";
+            for(var i in content){
+                thtml+="<li><a href='#' rel='"+"i"+"'>"+content[i] +"</a></li>";
+            }
+            thtml+="</ul></div>";
+            html = thtml;
+            num=title;
+            return true;
+        }
+        function initval(){                 //初始化点击的函数
+            $(".dropdown p").click(function(){
+                var ul = $(".dropdown ul");
+                if(ul.css("display")=="none"){
+                    ul.slideDown("fast");
+                }else{
+                    ul.slideUp("fast");
+                }
+            });
+            $(".dropdown ul li a").click(function(){
+                var txt = $(this).text();
+                num=txt;
+                $(".dropdown p").html(txt);
+//                var value = $(this).attr("rel");
+                $(".dropdown ul").hide();
+            });
+
+        }
+        function setDownList(tar,title,arr){            //对外接口，用于接受参数
+            if (getHtml(title,arr)) {
+                $(tar).html(html);
+                initval();
+            }
+        }
+        function getval(){                            //对外接口，输出数据
+            return num;
+        }
+        return{
+            setDownList:setDownList,
+            getval:getval
+        }
+
+    })();
+    var arr = ["周一","周二","周三"];
+    DownList.setDownList(".container","下拉框",arr);
+    function btnfun(){
+        alert(DownList.getval());
+    }
+</script>
+</body>
+</html>

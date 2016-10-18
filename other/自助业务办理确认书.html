@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="../lib/jquery-1.8.3.min.js"></script>
+    <script src="../js/countDown.js"></script>
+    <script src="../js/Utils.js"></script>
+    <script src="../js/simulator.js"></script>
+    <script src="../js/hotkey.js"></script>
+    <script src="../js/application.js"></script>
+    <script src="../js/jquery.dataTables.js"></script>
+    <script src="../js/displayFormat.js"></script>
+    <script src="../js/ModuleAmountInput.js"></script>
+    <script src="../js/livingBroadcast.js"></script>
+    <title></title>
+    <style>
+        .content{
+            position: absolute;
+            top: 130px;
+            left: 14px;
+            width: 1340px;
+            height: 980px;
+            font-size: 24px;
+            color: black;
+            font-family: '微软雅黑 light', '微软雅黑';
+        }
+        .tab3 tr td:nth-child(2n+1){
+            text-align: right;
+        }
+        .tab3 tr td:nth-child(2n){
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+<div style="position: absolute;left: 480px;top: 60px;text-align: center;font-size: 35px;color: black;font-weight: bold;">自主业务办理确认书</div>
+<div class="content">
+    <table>
+        <tr>
+            <td width="200">交易名称：</td>
+            <td width="400">C11004-开卡</td>
+            <td width="200">交易时间：</td>
+            <td width="400">20160817</td>
+        </tr>
+        <tr>
+            <td>客户号：</td>
+            <td>80051569736</td>
+            <td>姓名：</td>
+            <td>王小二</td>
+        </tr>
+        <tr>
+            <td>证件类型：</td>
+            <td>身份证</td>
+            <td>证件号码：</td>
+            <td>23423423423423423423423</td>
+        </tr>
+        <tr>
+            <td>证件到期日：</td>
+            <td>20350833</td>
+            <td>手机号码：</td>
+            <td>18888888888</td>
+        </tr>
+        <tr>
+            <td>家庭住址：</td>
+            <td colspan="3">中国广东省江门市蓬江区荷塘镇三丫村宋边坊4号</td>
+        </tr>
+    </table>
+    <hr style="border-style: dashed"/>
+    <table style="text-align: left;">
+        <tr>
+            <td width="600">卡号：<span>6212261663006212777</span></td>
+            <td width="600">卡产品名称：<span>20-IC普卡</span></td>
+        </tr>
+        <tr>
+            <td>账号：<span>6212261663006212777</span></td>
+            <!--<td width="600">卡产品名称：<span>20-IC普卡</span></td>-->
+        </tr>
+        <tr>
+            <td>自助设备转账限额：<span>无限制</span></td>
+            <td>POS消费限额：<span>99999999999999.00</span>元</td>
+        </tr>
+        <tr>
+            <td>自助设备取现限额：<span>20000.00</span>元</td>
+            <td>境外自助设备取现限额：<span>10000.00</span>元</td>
+        </tr>
+        <tr>
+            <td>自助设备行内转账限额：<span>5000000.00</span>元</td>
+            <td>自助设备行外转账限额：<span>5000000.00</span>元</td>
+        </tr>
+
+    </table>
+    <hr style="border-style: dashed"/>
+    <span style="font-weight: bold;">签约业务：</span>
+    <table class="tab3">
+        <tr>
+            <td width="150">短信签约：</td>
+            <td width="150">签约成功</td>
+            <td width="200">扣费卡号：</td>
+            <td width="250">6212261608559385768</td>
+            <td width="200"></td>
+            <td width="150"></td>
+        </tr>
+        <tr>
+            <td>手机银行：</td>
+            <td>未签约</td>
+            <td>单笔交易限额：</td>
+            <td>5555555555</td>
+            <td>日累计限额：</td>
+            <td>4444444444</td>
+        </tr>
+        <tr>
+            <td>网上银行：</td>
+            <td>未签约</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>UKEY:</td>
+            <td>无</td>
+            <td>单笔交易限额：</td>
+            <td>44444444444</td>
+            <td>日累计限额：</td>
+            <td>4444444444</td>
+        </tr>
+        <tr>
+            <td>动态口令：</td>
+            <td>无</td>
+            <td>单笔交易限额：</td>
+            <td></td>
+            <td>日累计限额：</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>短信口令：</td>
+            <td>无</td>
+            <td>单笔交易限额：</td>
+            <td></td>
+            <td>日累计限额：</td>
+            <td></td>
+        </tr>
+
+    </table>
+    <hr style="border-style: dashed"/>
+    <span style="font-weight: bold;">图片区：</span>
+    <table>
+        <tr>
+            <td width="600">
+                <img src="" style="width: 415px;height: 271px;"><div style="margin-left: 150px">证件正面照</div>
+            </td>
+            <td width="600" style="text-align: right">
+                <img src="" style="width: 415px;height: 271px;"><div style="margin-right: 100px;">证件背面照</div>
+            </td>
+        </tr>
+        <tr>
+            <td width="600">
+                <img src="" style="width: 508px;height: 421px;"><div style="margin-left: 150px">拍摄照片</div>
+            </td>
+            <td width="600" style="text-align: right">
+                <img src="" style="width: 415px;height: 271px;"><div style="margin-right: 100px;">公安局核查回来照片</div>
+            </td>
+        </tr>
+    </table>
+    <br/>
+        <span style="font-weight: bold;">身份证信息核查结果：</span><span style="font-weight: bold;">身份核实通过</span>
+    <hr style="border-style: dashed"/>
+    <p style="font-size: 18px;">
+        本人自愿申请以上服务，保证所提交的个人信息及联系方式为本人真实、完整的信息保证所提交的开户资料集信息真实、有效，如有伪造、欺诈，自愿承担
+        法律责任。本人已阅读并同意遵守《个人银行结算账户管理协议》、《广东省农村合作金融机构电子银行借记卡章程》、《广东省农村合作金融机构电子银行
+        个人客户服务协议》，并保证按照相关最新业务章程、业务规划、业务规定办理相关业务。
+    </p>
+    <span style="font-weight: bold;">客户对所办业务与上述银行记录相符，签章确认：</span><img src="" style="width: 100px;height: 130px;">
+    <hr style="border-style: dashed"/>
+    <table>
+        <tr>
+            <td width="300">交易机构：<span>06144</span></td>
+            <td width="300">交易流水号：<span>00314</span></td>
+            <td width="300">复核/授权：<span>0000231</span></td>
+            <td width="300">记账：<span>999917</span></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

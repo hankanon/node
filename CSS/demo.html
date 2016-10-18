@@ -1,0 +1,226 @@
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS 自定义动画</title>
+    <link rel="stylesheet" type="text/css" media="all" href="./common/common.css" />
+    <style>
+        #content {position: absolute; left: 50%; top: 212px; width: 500px; height: 400px; margin-left: -270px; padding: 0 20px; background: #ccc; }
+
+        #a2, #a1 {color: #565656; font-size: 32px; font-family: "Trebuchet MS", helvetica, arial, sans-serif; text-align: center; }
+
+        #a1 {opacity: 0; }
+        #a2 {opacity: 1; }
+
+        span {position: absolute; left: 50%; top: 50%; display: block; height: 133px; margin-top: -66px; line-height: 133px; }
+
+        #a1 {width: 110px; margin-left: -55px; -webkit-animation: animationsUpDown 1s ease 1s, animationsOut 2s ease-out 2s; -moz-animation: animationsUpDown 1s ease 1s, animationsOut 2s ease-out 2s; -o-animation: animationsUpDown 1s ease 1s, animationsOut 2s ease-out 2s; animation: animationsUpDown 1s ease 1s, animationsOut 2s ease-out 2s; }
+
+        @-webkit-keyframes animationsUpDown {
+
+            0% {-webkit-transform: translateY(-130px); opacity: 0; }
+            50% {-webkit-transform: translateY(-90px); opacity: 0; }
+            70% {-webkit-transform: translateY(0); opacity: 1; }
+            75% {-webkit-transform: translateY(-20px); opacity: 1 }
+            80% {-webkit-transform: translateY(0); opacity: 1 }
+            85% {-webkit-transform: translateY(-13px); opacity: 1 }
+            90% {-webkit-transform: translateY(0); opacity: 1 }
+            95% {-webkit-transform: translateY(-6px); opacity: 1 }
+            100% {-webkit-transform: translateY(0); opacity: 1 }
+
+        }
+
+        @-moz-keyframes animationsUpDown {
+
+            0% {-moz-transform: translateY(-130px); opacity: 0; }
+            50% {-moz-transform: translateY(-90px); opacity: 0; }
+            70% {-moz-transform: translateY(0); opacity: 1; }
+            75% {-moz-transform: translateY(-20px); opacity: 1 }
+            80% {-moz-transform: translateY(0); opacity: 1 }
+            85% {-moz-transform: translateY(-13px); opacity: 1 }
+            90% {-moz-transform: translateY(0); opacity: 1 }
+            95% {-moz-transform: translateY(-6px); opacity: 1 }
+            100% {-moz-transform: translateY(0); opacity: 1 }
+
+        }
+
+        @-o-keyframes animationsUpDown {
+
+            0% {-o-transform: translateY(-130px); opacity: 0; }
+            50% {-o-transform: translateY(-90px); opacity: 0; }
+            70% {-o-transform: translateY(0); opacity: 1; }
+            75% {-o-transform: translateY(-20px); opacity: 1 }
+            80% {-o-transform: translateY(0); opacity: 1 }
+            85% {-o-transform: translateY(-13px); opacity: 1 }
+            90% {-o-transform: translateY(0); opacity: 1 }
+            95% {-o-transform: translateY(-6px); opacity: 1 }
+            100% {-o-transform: translateY(0); opacity: 1 }
+
+        }
+
+        @keyframes animationsUpDown {
+
+            0% {transform: translateY(-130px); opacity: 0; }
+            50% {transform: translateY(-90px); opacity: 0; }
+            70% {transform: translateY(0); opacity: 1; }
+            75% {transform: translateY(-20px); opacity: 1 }
+            80% {transform: translateY(0); opacity: 1 }
+            85% {transform: translateY(-13px); opacity: 1 }
+            90% {transform: translateY(0); opacity: 1 }
+            95% {transform: translateY(-6px); opacity: 1 }
+            100% {transform: translateY(0); opacity: 1 }
+
+        }
+
+        @-webkit-keyframes animationsOut {
+
+            0% {-webkit-transform: translateY(0); opacity: 1 }
+            50% {-webkit-transform: translateY(0); opacity: 1 }
+            65% {-webkit-transform: translate(60px, -50px) rotate(90deg); opacity: 1; }
+            75% {-webkit-transform: translate(90px, -70px) rotate(180deg); opacity: 1; }
+            85% {-webkit-transform: translate(120px, -100px) rotate(270deg); opacity: 1; }
+            100% {-webkit-transform: translate(200px, -150px) rotate(360deg); opacity: 0; }
+
+        }
+
+        @-moz-keyframes animationsOut {
+
+            0% {-moz-transform: translateY(0); opacity: 1 }
+            50% {-moz-transform: translateY(0); opacity: 1 }
+            65% {-moz-transform: translate(60px, -50px) rotate(90deg); opacity: 1; }
+            75% {-moz-transform: translate(90px, -70px) rotate(180deg); opacity: 1; }
+            85% {-moz-transform: translate(120px, -100px) rotate(270deg); opacity: 1; }
+            100% {-moz-transform: translate(200px, -150px) rotate(360deg); opacity: 0; }
+
+        }
+
+        @-o-keyframes animationsOut {
+
+            0% {-o-transform: translateY(0); opacity: 1 }
+            50% {-o-transform: translateY(0); opacity: 1 }
+            65% {-o-transform: translate(60px, -50px) rotate(90deg); opacity: 1; }
+            75% {-o-transform: translate(90px, -70px) rotate(180deg); opacity: 1; }
+            85% {-o-transform: translate(120px, -100px) rotate(270deg); opacity: 1; }
+            100% {-o-transform: translate(200px, -150px) rotate(360deg); opacity: 0; }
+
+        }
+        @keyframes animationsOut {
+
+            0% {transform: translateY(0); opacity: 1 }
+            50% {transform: translateY(0); opacity: 1 }
+            65% {transform: translate(60px, -50px) rotate(90deg); opacity: 1; }
+            75% {transform: translate(90px, -70px) rotate(180deg); opacity: 1; }
+            85% {transform: translate(120px, -100px) rotate(270deg); opacity: 1; }
+            100% {transform: translate(200px, -150px) rotate(360deg); opacity: 0; }
+
+        }
+
+
+        #a2 {width: 250px; margin-left: -125px; -webkit-animation: animationsGoRight 4s ease-in-out; -moz-animation: animationsGoRight 4s ease-in-out; -o-animation: animationsGoRight 4s ease-in-out; animation: animationsGoRight 4s ease-in-out; }
+
+        @-webkit-keyframes animationsGoRight {
+
+            0% {-webkit-transform: translate(-155px); opacity: 0; }
+            70% {-webkit-transform: translate(-155px); opacity: 0; }
+            80% {-webkit-transform: translate(-55px); opacity: 1; }
+            100% {-webkit-transform: translate(0); }
+
+        }
+        @-moz-keyframes animationsGoRight {
+
+            0% {-moz-transform: translate(-155px); opacity: 0; }
+            70% {-moz-transform: translate(-155px); opacity: 0; }
+            80% {-moz-transform: translate(-55px); opacity: 1; }
+            100% {-moz-transform: translate(0); }
+
+        }
+        @-o-keyframes animationsGoRight {
+
+            0% {-o-transform: translate(-155px); opacity: 0; }
+            70% {-o-transform: translate(-155px); opacity: 0; }
+            80% {-o-transform: translate(-55px); opacity: 1; }
+            100% {-o-transform: translate(0); }
+
+        }
+        @keyframes animationsGoRight {
+
+            0% {transform: translate(-155px); opacity: 0; }
+            70% {transform: translate(-155px); opacity: 0; }
+            80% {transform: translate(-55px); opacity: 1; }
+            100% {transform: translate(0); }
+
+        }
+
+        #content {-webkit-animation: animationsStart 1s ease-in; -moz-animation: animationsStart 1s ease-in; -o-animation: animationsStart 1s ease-in; animation: animationsStart 1s ease-in; }
+
+        @-webkit-keyframes animationsStart {
+
+            0% {-webkit-transform: translateY(-150px); opacity: 0; }
+            40% {-webkit-transform: translateY(0); opacity: 1; }
+            50% {-webkit-transform: translateY(-20px); }
+            60% {-webkit-transform: translateY(0); }
+            70% {-webkit-transform: translateY(-10px); }
+            80% {-webkit-transform: translateY(0); }
+            90% {-webkit-transform: translateY(-4px); }
+            100% {-webkit-transform: translateY(0); }
+        }
+
+        @-moz-keyframes animationsStart {
+
+            0% {-moz-transform: translateY(-150px); opacity: 0; }
+            40% {-moz-transform: translateY(0); opacity: 1; }
+            50% {-moz-transform: translateY(-20px); }
+            60% {-moz-transform: translateY(0); }
+            70% {-moz-transform: translateY(-10px); }
+            80% {-moz-transform: translateY(0); }
+            90% {-moz-transform: translateY(-4px); }
+            100% {-moz-transform: translateY(0); }
+        }
+
+        @-o-keyframes animationsStart {
+
+            0% {-o-transform: translateY(-150px); opacity: 0; }
+            40% {-o-transform: translateY(0); opacity: 1; }
+            50% {-o-transform: translateY(-20px); }
+            60% {-o-transform: translateY(0); }
+            70% {-o-transform: translateY(-10px); }
+            80% {-o-transform: translateY(0); }
+            90% {-o-transform: translateY(-4px); }
+            100% {-o-transform: translateY(0); }
+        }
+
+        @keyframes animationsStart {
+
+            0% {transform: translateY(-150px); opacity: 0; }
+            40% {transform: translateY(0); opacity: 1; }
+            50% {transform: translateY(-20px); }
+            60% {transform: translateY(0); }
+            70% {transform: translateY(-10px); }
+            80% {transform: translateY(0); }
+            90% {transform: translateY(-4px); }
+            100% {transform: translateY(0); }
+        }
+
+
+
+    </style>
+</head>
+<body>
+
+<!--<div id="header">-->
+    <!--<div id="header-content">-->
+        <!--<div id="header-inside">-->
+            <!--<p class="go-to-article"><a href="http://kayosite.com/css3-animation.html" title="打开原文" target="_blank" >Back To Article</a></p>-->
+            <!--<p class="go-to-blog"><a href="http://kayosite.com" title="进入我的博客 Kayo's Melody" target="_blank" >My Blog</a></p>-->
+            <!--<p class="copyright">Demo By Kayo &copy; Copyright 2011-2013</p>-->
+        <!--</div>-->
+        <!--<h1>CSS3 Animation</h1>-->
+    <!--</div>-->
+<!--</div>-->
+
+<div id="content">
+    <span id="a1">Flash</span>
+    <span id="a2">CSS3 Animation</span>
+</div>
+
+</body>
+</html>

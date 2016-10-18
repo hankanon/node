@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+//    function test(){
+//
+//    }
+//    test.prototype.name ='tom';
+//    test.prototype.age = 33;
+//
+//    var t1 = new test();
+//    var t2 = new test();
+//    t1.age=44;
+//
+////    当属性存在于实例对象时返回true，
+//    alert(t1.hasOwnProperty("age"));    //true
+//    alert(t2.hasOwnProperty("age"));    //false
+//
+//    t2.salary = 9999;
+//
+////    只要通过对象能够访问到的对象就返回true
+//    alert("salary" in t1);      //false
+//    alert("salary" in t2);      //true
+//
+//    alert("age" in t1);         //true
+//    alert("age" in t2);         //true
+    function testarr(){
+        var val = new Array();
+        val.push.apply(val,arguments);
+        val.toPipedString = function(){
+            return this.join("|");
+        };
+        return val;
+    }
+    var a =  new testarr("aaa","bbb","ccc");
+    alert(a.toPipedString());
+
+</script>
+</body>
+</html>

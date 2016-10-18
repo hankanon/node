@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../js/jquery.min.js"></script>
+    <style>
+        #divtest
+        {
+            width: 282px;
+        }
+        #divtest .title
+        {
+            padding: 8px;
+            background-color:Blue;
+            color:#fff;
+            height: 23px;
+            line-height: 23px;
+            font-size: 15px;
+            font-weight: bold;
+        }
+        ul
+        {
+            float: left;
+            width: 280px;
+            padding: 5px 0px;
+            margin: 0px;
+            font-size: 14px;
+            list-style-type: none;
+        }
+        ul li
+        {
+            float: left;
+            width: 280px;
+            height: 23px;
+            line-height: 23px;
+            padding: 3px 8px;
+        }
+        .fl
+        {
+            float: left;
+        }
+        .fr
+        {
+            float: right;
+        }
+    </style>
+</head>
+<body>
+<div id="divtest">
+    <div class="title">
+        <span class="fl">我最喜欢的一项运动</span>
+                <span class="fr">
+                    <input id="btnShow" type="button" value="加载" />
+                </span>
+    </div>
+    <ul></ul>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $("#btnShow").bind("click", function () {
+            var $this = $(this);
+//            alert("ddd");
+            $.getScript("json1.js",function(data){
+                $this.attr("disabled", "true");
+//                alert(data);
+//                for(var i=0;i<data.length;i++){
+//                    $("ul").append("<li>" + data[i].name + "</li>");
+//                }
+//            $.each(data, function (index, sport) {
+//                if(index==3)
+//                    $("ul").append("<li>" + sport["name"] + "</li>");
+//            });
+
+        });
+    })
+    });
+</script>
+</body>
+</body>
+</html>

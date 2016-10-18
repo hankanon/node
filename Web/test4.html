@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <!--<script src="EventUtil.js"></script>-->
+    <style>
+
+    </style>
+</head>
+<body>
+<ul id="myLinks">
+    <li id="n1">11</li>
+    <li id="n2">22</li>
+    <li id="n3">33</li>
+</ul>
+<script>
+    var list = document.getElementById("myLinks");
+    var EventUtil = {
+        addHandler: function (element, type, handler) {
+            if (element.addEventListener) {
+                element.addEventListener(type, handler, false);
+            } else if (element.attachEvent) {
+                element.attachEvent("on" + type, handler);
+            } else {
+                element["on" + type] = handler;
+            }
+        },
+        removeHandler: function (element, type, handler) {
+            if (element.removeEventListener) {
+                element.removeEventListener(type, handler, false);
+            } else if (element.detachEvent) {
+                element.detachEvent("on" + type, handler);
+            } else {
+                element["on" + type] = null;
+            }
+        },
+
+        getEvent: function (event) {
+            return event ? event : window.event;
+        },
+        getTarget: function (event) {
+            return event.target || event.srcElement;
+        },
+        preventDefault: function (event) {
+            if (event.preventDefault) {
+                event.preventDefault();
+            } else {
+                event.returnValue = false;
+            }
+        },
+        stopPropagation: function (event) {
+            if (event.stopPropagation) {
+                event.stopPropagation();
+            } else {
+                event.cancelBubbles = true;
+            }
+        },
+        getRelatedTarget: function (event) {
+            if (event.relatedTarget) {
+                return event.relatedTarget;
+            } else if (event.toElement) {
+                return event.toElement;
+            } else if (event.fromElement) {
+                return event.fromElement;
+            } else { return null; }
+
+        }
+
+    };
+    EventUtil.addHandler(list,"click",function(event){
+       event = EventUtil.getEvent(event);
+        var target = EventUtil.getTarget(event);
+        switch (target.id){
+            case "n1":
+                document.title ="change 1 ok";
+                break;
+            case "n2":
+                document.title = "change 2 ok";
+                break;
+            case "n3":
+                alert("dddd");
+                break;
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+
+        .trans-config-table {
+            position: absolute;
+            top: 24%;
+            left: 30%;
+            width: 40%;
+            font-size: 30px;
+            /*background-color: #828282;*/
+        }
+
+        .trans-config-table .col-3 {
+            width: 40%;
+            text-align: center;
+            /*border: 1px solid black;*/
+        }
+
+        .checkbox { display: none; }
+
+        .trans-config-table .checkbox-wrapper {
+            width: 125px;
+            height: 50px;
+            position: relative;
+            display: inline-block;
+            /*overflow: hidden;*/
+            border: 1px solid black;
+            /*top: 20px;*/
+        }
+
+        .trans-config-table .checkbox-label:before,
+        .trans-config-table .checkbox-label:after {
+            font-size: 20px;
+            color: #ffffff;
+            position: absolute;
+            font-weight: bold;
+            line-height: 50px;
+            width: 62.5px;
+            height: 50px;
+            text-align: center;
+        }
+
+        .trans-config-table .checkbox-label:before {
+            content: '启用';
+            left: -62.5px;
+            background: rgb(46, 204, 113);
+        }
+
+        .trans-config-table .checkbox-label:after {
+            content: '禁用';
+            right: -62.5px;
+            background: rgb(231, 76, 10);
+        }
+
+        .trans-config-table .checkbox-label {
+            display: block;
+            position: absolute;
+            left: 0;
+            width: 62.5px;
+            height: 50px;
+            transition: all .4s ease;
+            cursor: pointer;
+            background: #fff;
+        }
+
+        .trans-config-table .checkbox:checked + .checkbox-wrapper .checkbox-label { left: 62.5px; }
+    </style>
+</head>
+<body>
+<table class="trans-config-table">
+    <tr>
+        <td class="col-3">
+            <input type="checkbox" class="checkbox" id="checkbox-1"/>
+            <div class="checkbox-wrapper">
+                <label for="checkbox-1" class="checkbox-label"></label>
+            </div>
+        </td>
+    </tr>
+
+</table>
+</body>
+</html>

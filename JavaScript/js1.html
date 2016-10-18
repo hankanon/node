@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    (function test(){
+//
+    var str ="nRet=0|name=tom|sexno=32423|studentcode=324234234|idcard=121243234|pid=2|balance=0|expiredate=4t43t4|password=2343234|subseq=0";
+    var arr = str.split("|");
+    alert(arr.length);
+    var arrtwo = arr[0].split("=");
+    var retstr = arrtwo[0], ret = arrtwo[1];
+        alert(retstr);
+        alert(ret);
+    if(retstr =="nRet" && ret =="0"){
+        for(var i=1; i<arr.length; i++){
+            arrtwo = arr[i].split("=");
+            if(arrtwo.length == "2"){
+                alert("000");
+                switch (arrtwo[0]){
+                    case "name": console.log(arrtwo[1]);break;
+                    case "sexno": console.log(arrtwo[1]);break;
+                    case "studentcode": console.log(arrtwo[1]);break;
+                    case "idcard": console.log(arrtwo[1]);break;
+                    case "pid": console.log(arrtwo[1]);break;
+                    case "balance": console.log(arrtwo[1]);break;
+                    case "expiredate": console.log(arrtwo[1]);break;
+                    case "password": console.log(arrtwo[1]);break;
+                    case "subseq": console.log(arrtwo[1]);break;
+                }
+            }
+        }
+    }
+    })();
+</script>
+</body>
+</html>

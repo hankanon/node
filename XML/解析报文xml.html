@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<button onclick="tt()">按钮</button>
+
+<script>
+    function tt(){
+//        var xml ='<?xml version="1.0" encoding = "GB2312"?><root><SCI_tx_code>C22001</SCI_tx_code><SCI_device_no>56030a002</SCI_device_no><SCI_terminal_code>06144</SCI_terminal_code><SCI_branch_no>0500</SCI_branch_no><SCI_curr_seqno>00329</SCI_curr_seqno><SCI_trns_date>20160525</SCI_trns_date><SCI_trns_time>020715</SCI_trns_time><SCI_sys_trace_num>50810007838</SCI_sys_trace_num><SCI_rej_code>00000</SCI_rej_code><SCI_host_seqno></SCI_host_seqno><SCI_host_rsq></SCI_host_rsq><SCI_rej_msg>成功地批准或完成</SCI_rej_msg><SCI_ack_reserve></SCI_ack_reserve><pin_key>8CE74472D30F549AFF036EA70AB6E386</pin_key><pin_checkvalue>EBE191EAF01E71EA</pin_checkvalue><mac_key>2DD9493DF2AC31F8</mac_key><mac_checkvalue>871F9E1AD56192ED</mac_checkvalue></root>';
+var xml ='<?xml version="1.0" encoding = "GB2312"?><root><SCI_tx_code>C41015</SCI_tx_code><SCI_device_no>56030a001</SCI_device_no><SCI_terminal_code>06144</SCI_terminal_code><SCI_branch_no>0500</SCI_branch_no><SCI_curr_seqno>00000047</SCI_curr_seqno><SCI_trns_date>20160823</SCI_trns_date><SCI_trns_time>111114</SCI_trns_time><SCI_sys_trace_num>50820008496</SCI_sys_trace_num><SCI_rej_code>00000</SCI_rej_code><SCI_host_seqno>100101954</SCI_host_seqno><SCI_host_rsq>00000</SCI_host_rsq><SCI_rej_msg>交易成功完成</SCI_rej_msg><SCI_ack_reserve></SCI_ack_reserve><cust_no></cust_no><cert_type>01</cert_type><cert_no>370783199202230714</cert_no><cust_name></cust_name><sign_date></sign_date><sign_deptid></sign_deptid><sign_channel></sign_channel><sign_version></sign_version><sign_mobilephone></sign_mobilephone><limitper_trs>50000|1000000</limitper_trs><limitper_day>50000|1000000</limitper_day><banklimitper_trs>200000.00|1000000</banklimitper_trs><banklimitper_day>200000.00|1000000</banklimitper_day><mobilesign_flag>1</mobilesign_flag><acct_no></acct_no><is_oneacctno></is_oneacctno></root>';
+        var  ret = xmlParse(xml,"SCI_rej_code");
+        var  ret2 = xmlParse(xml,"sign_version");
+        alert(ret);
+        alert(ret2);
+
+//        var xmlDom=new ActiveXObject("Microsoft.XMLDOM") ;
+//        xmlDom.async = "false";
+//        xmlDom.loadXML(xml) ;
+//        var elements = xmlDom.getElementsByTagName("root");
+//        alert(elements.length);
+//        //	for (var i = 0; i < elements.length; i++) {
+//        var name = elements[0].getElementsByTagName("SCI_rej_code")[0].firstChild.nodeValue;
+//        var ip = elements[0].getElementsByTagName("SCI_rej_msg")[0].firstChild.nodeValue;
+//        var name2 = elements[0].getElementsByTagName("SCI_tx_code")[0].firstChild.nodeValue;
+//        alert(name);
+//        alert(ip);
+//        alert(name2);
+    }
+function xmlParse(xml,target){
+    var xmlDom=new ActiveXObject("Microsoft.XMLDOM") ;
+    if(xmlDom == null){
+        return "failure";
+    }
+    try{
+        xmlDom.async = "false";
+        xmlDom.loadXML(xml) ;
+//        var elements = xmlDom.getElementsByTagName("root");
+//        var value = elements[0].getElementsByTagName(target)[0].firstChild.nodeValue;
+        if( xmlDom.getElementsByTagName(target)[0] != null &&
+            xmlDom.getElementsByTagName(target)[0].childNodes[0] !=null &&
+            xmlDom.getElementsByTagName(target)[0].childNodes[0].nodeValue !=null)
+        {
+            return  xmlDom.getElementsByTagName(target)[0].childNodes[0].nodeValue;
+        }else{
+            console.log("标签为空");
+            return "";
+        }
+
+
+    }catch(err){
+        console.log(err.description);
+    }
+    return "failure";
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div id="num">
+    登录
+</div>
+<script>
+    var CreateDiv = (function(){
+        var div;
+        return function(){          //返回的是个函数
+            if(!div){
+                div = document.createElement('div');
+                div.innerHTML="登录框";
+//                div.style.display='none';
+                document.body.appendChild(div);
+            }
+            return div;
+        }
+    })();
+    document.getElementById('num').onclick = function(){
+        alert(CreateDiv);       //CreateDiv返回的是个函数，所以CreateDiv的值为匿名函数。而CreateDiv()返回div（DOM）对象
+        var s = CreateDiv();
+        alert(s);
+//        s.style.display='block';
+    };
+</script>
+
+</body>
+</html>

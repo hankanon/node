@@ -1,0 +1,145 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<title>字符串转xml初始化文本框</title> 
+</head> 
+
+<body> 
+xml数据item节点1的值<br/>
+用户名：<input type="text" id="username" /><br/>
+密码：<input type="text" id="password" /><br/>
+从xml属性中取得的性别值：<input type="text" id="sex1" />
+<br/><br/>
+xml数据item节点2的值<br/>
+用户名：<input type="text" id="username2" /><br/>
+密码：<input type="text" id="password2" /><br/>
+从xml属性中取得的性别值：<input type="text" id="sex2" />
+<button onclick="xml()">提交</button>
+
+<script language="javascript" type="text/javascript" > 
+/* 
+* 字符串返回xml对象 
+* @param str:xml字符串 
+* ---------------------- 
+* 程序编写：李建东 
+* 编写时间：2010-12-04 22:42 
+* 联系电话：135 1985-02-07 
+* QQ号码：813751/657597 
+*/ 
+function xml(){ 
+alert("aa");
+	var str ='<?xml version="1.0" encoding = "GB2312"?><root><SCI_tx_code>C22001</SCI_tx_code><SCI_device_no>56030a002</SCI_device_no><SCI_terminal_code>06144</SCI_terminal_code><SCI_branch_no>0500</SCI_branch_no><SCI_curr_seqno>00329</SCI_curr_seqno><SCI_trns_date>20160525</SCI_trns_date><SCI_trns_time>020715</SCI_trns_time><SCI_sys_trace_num>50810007838</SCI_sys_trace_num><SCI_rej_code>00000</SCI_rej_code><SCI_host_seqno></SCI_host_seqno><SCI_host_rsq></SCI_host_rsq><SCI_rej_msg>成功地批准或完成</SCI_rej_msg><SCI_ack_reserve></SCI_ack_reserve><pin_key>8CE74472D30F549AFF036EA70AB6E386</pin_key><pin_checkvalue>EBE191EAF01E71EA</pin_checkvalue><mac_key>2DD9493DF2AC31F8</mac_key><mac_checkvalue>871F9E1AD56192ED</mac_checkvalue></root>';
+
+//var str = ""
+//str += "<?xml version=\"1.0\" encoding=\"GBK\" ?>";
+//str += "<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\" soap:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\">";
+//str +="<soap:Header>";
+//str +=" <result sessionID=\"Ixq40Opc16VLy8pyXAcywh4TXoS7Y6JxnHiQc9s8n71TTc0Om2sa!560272606!1211198008515\" />";
+//str +="</soap:Header>";
+//str += "<soap:Body>";
+//str += "<out:business xmlns:out=\"http://www.molss.gov.cn/\">";
+//str += "<result cgxx=\"哈哈哈哈\" />";
+//str += "</out:business>";
+//str += "</soap:Body>";
+//str += "</soap:Envelope>";
+ //console.log(“str:”+str);
+        var xmlDom=new ActiveXObject("Microsoft.XMLDOM") ;
+        xmlDom.loadXML(str) ;
+	var elements = xmlDom.getElementsByTagName("root");
+	alert(elements.length);
+//	for (var i = 0; i < elements.length; i++) {
+		var name = elements[0].getElementsByTagName("SCI_rej_code")[0].firstChild.nodeValue;
+		var ip = elements[0].getElementsByTagName("SCI_rej_msg")[0].firstChild.nodeValue;
+		var name2 = elements[0].getElementsByTagName("SCI_tx_code")[0].firstChild.nodeValue;
+		alert(name);
+		alert(ip);
+		alert(name2);
+//	}
+//	var msg = xmlDom.getElementsByTagName("result")[0].attributes;
+		// alert(xmlDom.getElementsByTagName("result")[0].value);
+		// alert(xmlDom.getElementsByTagName("result")[0].getAttribute('sessionID'));
+//		 var x = xmlDom.getElementsByTagName("result")[0].attributes;
+//		// alert(x.getNamedItem("sessionID").nodeValue);
+//		 var y = xmlDom.getElementsByTagName("result")[1].attributes;
+//		 //alert(y.getNamedItem("cgxx").nodeValue);
+//		 var tag=xmlDom.getElementsByTagName("result");
+//		// alert(tag.length);
+//		 for(var i=0;i<tag.length;i++)
+//		 {
+//			alert(tag[1].getAttribute('cgxx'));
+//		 }
+		 
+		 
+		 
+		 //alert(xmlDom.getElementsByTagName("result")[1].getAttribute('cgxx'));
+		// var flag =xmlDom.getElementsByTagName("result")[1].getAttribute('cgxx');
+		// var str2 = new String(flag.getBytes("GBK"),"UTF-8"); 
+//alert(str2);		 
+    
+		
+} 
+
+//xml字符串 
+
+//根据ID取容器对象，以减少写document.getElementById() 
+//var $ = function(id){return document.getElementById(id);}; 
+//调用函数将字符器型的xml数据转换成xml文档 
+
+//初始第1节点数据 
+//$("username").value = xmldoc[0].getElementsByTagName("username").item(0).text; 
+//$("password").value = xmldoc[0].getElementsByTagName("password").item(0).text; 
+//初始第2节点数据 
+//$("username2").value = xmldoc[1].getElementsByTagName("username").item(0).text; 
+//$("password2").value = xmldoc[1].getElementsByTagName("password").item(0).text; 
+//根据xml节点属性读取属性值 
+//$("sex1").value = xmldoc[0].getElementsByTagName("username").item(0).attributes.getNamedItem("sex").value; 
+//$("sex2").value = xmldoc[1].getElementsByTagName("username").item(0).attributes.getNamedItem("sex").value; 
+// 
+
+function XmlParse(xml,tagname,itemname,index){
+		Trc.Info("MsgParse.js XmlParse");
+		
+		var xmlDoc = new ActiveXObject("Microsoft.XMLDOM");
+		if(xmlDoc == null)
+		{
+			Trc.Info("Create xmlDoc failure");
+			return "";
+		}
+		
+		try
+		{
+			xmlDoc.async = "false";
+			xmlDoc.loadXML(xml);
+			
+			// nodeType ： 3 代表为字符串元素
+			if( xmlDoc.getElementsByTagName(tagname)[index] != null &&
+				xmlDoc.getElementsByTagName(tagname)[index].childNodes[0] != null &&
+				xmlDoc.getElementsByTagName(tagname)[index].childNodes[0].nodeType == 3 &&		//
+				xmlDoc.getElementsByTagName(tagname)[index].childNodes[0].nodeValue != null )
+			{
+				//Trc.Info("getElementeByTagName , tagname: " + tagname + " : " + xmlDoc.getElementsByTagName(tagname)[index].childNodes[0].nodeValue);
+				return xmlDoc.getElementsByTagName(tagname)[index].childNodes[0].nodeValue;
+			}
+			else
+			{
+				Trc.Info("tagname is empty");
+				return "";
+			}
+		}
+		catch(err)
+		{
+			Trc.Info("xml : " + xml);
+			Trc.Info("tagname : " + tagname);
+			Trc.Info("index : " + index);
+			Trc.Error("runtime err: " + err.description);
+		}
+		
+		return "";
+	}
+
+
+
+</script> 
+</body> 
+</html>

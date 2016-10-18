@@ -1,0 +1,20 @@
+html, body, div, span, object, iframe,h1, h2, h3, h4, h5, h6, p, blockquote, pre,a, abbr, address, cite, code,del, dfn, em, img, ins, kbd, q, samp,small, strong, sub, sup, var,b, i,dl, dt, dd, ol, ul, li, fieldset, form, label, legend,table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video {margin: 0; padding: 0; border: 0; outline: 0; font-size: 100%; vertical-align: baseline; background: transparent; }
+body{line-height: 1; text-align: left; background: url(bg.png); }
+
+#header {height: 212px; }
+#header-content {background: url(bg-header.png) repeat-x; color: #fff; font: normal 16px/28px 'myriad pro', helvetica, arial, sans-serif; }
+#header-content h1 {height: 50px; padding-top: 50px; padding-bottom: 50px; color: #444; font: 40px/50px "Trebuchet MS", helvetica, arial, sans-serif; text-align: center; }
+#header-inside {width: 980px; height: 62px; margin: 0 auto; overflow: hidden; }
+#header-inside .go-to-blog, #header-inside .go-to-article {float: left; margin-top: 15px; }
+#header-inside .go-to-blog {margin-left: 20px; }
+#header-inside .go-to-blog a, #header-inside .go-to-article a {display: block; padding: 1px 15px; -webkit-border-radius: 4px; border-radius: 4px; border-radius: 4px; -webkit-transition: background-color .2s ease-in; -moz-transition: background-color .2s ease-in; -o-transition: background-color .2s ease-in; transition: background-color .2s ease-in; }
+#header-inside .go-to-blog a {background: #41B100; }
+#header-inside .go-to-blog a:hover {background: #55c216; }
+#header-inside .go-to-article a {background: #53a7bb; }
+#header-inside .go-to-article a:hover {background: #58c1da; }
+#header-inside .copyright {float: right; width: 285px; height: 32px; margin-top: 14px; line-height: 32px; }
+
+#header-inside a {text-decoration: none; color: #fff; }
+#header-inside a:visited {color: #fff; }
+#header-inside a:hover {color: #fff; }
+#header-inside a:active {color: #fff; }

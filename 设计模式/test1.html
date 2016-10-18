@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div id="div1">
+    111111111
+</div>
+<script>
+//   window.name="dog";
+//    var myObj = {
+//        name:"local",
+//        getName:function(){
+//            return this.name;
+//        }
+//    };
+//    var Name = myObj.getName;
+////    console.log(getName());
+////    alert(Name());
+////    alert(myObj.getName());
+//
+//   var dog=function(){
+//       return this;
+//   };
+//   var cat = dog;
+//   alert(cat());
+////    window.name="window";
+////    var getName = function(){
+////        return this.name;
+////    };
+////    alert(getName());
+
+
+//    document对象
+//window.name="window";
+//var getid2= function(id){
+//    return document.getElementById(id);
+//};
+////    var getId = document.getElementById;
+//   alert(getid2('div1').innerHTML);
+//document.getElementById('div1').onclick = function(){
+//    alert(this);
+//    var func = function(){
+//        alert(this);
+//
+//    };
+//    func.call(this);
+//}
+
+//
+//    function num(){
+//        var a=1;
+//        return function(){
+//            a++;
+//            alert(a);
+//        }
+//    }
+//    var a=num();
+//    a();
+//    a();
+//    alert(num());
+//    alert(a);
+//    var add = function(fn){
+//        var args = [];
+//        return function(){
+//            if(arguments.length===0){
+//                return fn.apply(this,args);
+//            }else{
+//                [].push.apply(args,arguments);
+//                return arguments.callee;
+//            }
+//        }
+//    };
+//    var cost = (function(){
+//        var money = 0;
+//        return function(){
+//            for (var i= 0,l=arguments.length;i<l;i++){
+//                money+=arguments[i];
+//            }
+//            return money;
+//        }
+//    })();
+//    var test = add(cost);
+//test(100);
+//test(200);
+//test(300);
+//    alert(test());
+//var name = "The Window";
+//var object = {
+//    name : "My Object",
+//    getNameFunc : function(){
+//        var that = this;
+//        return function(){
+//            return that.name;
+//        };
+//    }
+//};
+////alert(object.getNameFunc()());
+//    function abc(a,b){
+//        return a+b;
+//    }
+//    alert(abc(3,4));
+//var Type={};
+//    for(var i= 0,type;type=['String','Array','Number'][i++];){
+//        (function(type){
+//            Type['is'+type]=function(obj){
+//                return Object.prototype.toString.call(obj)==='[object'+type+']';
+//            }
+//        })(type)
+//    }
+//alert(Type.isArray([]));
+//alert(Type.isString("str"));
+//  var a = function(){
+//    var num=0;
+//      return {
+//          call:function(){
+//              num++;
+//              console.log(num);
+//          }
+//      }
+//  };
+//    alert(a);
+//    alert(a());
+//    var b= a();
+//alert(b);
+//b.call();
+//var a = function(name){
+//    this.name=name;
+//};
+//a.prototype.getname= function(){
+//    alert(this.name);
+//};
+//p = (function(){
+//    var install=null;
+//    return function(){
+//        if(!install){
+//            install= new a(name);
+//        }
+//    }
+//})();
+//
+//    var nn= a.getinstall('n');
+//    var mm = a.getinstall('m');
+//    alert(n===m);
+//    alert();
+//nn.getname();
+    var user =(function(){
+        var _name = 'tom',
+                _age=33;
+        return{             //返回的是个对象
+            getuserinfo: function(){
+                return _name + '-'+_age;
+            }
+        }
+    })();
+//    var m = user;         //所以user就是个对象，就可以直接调用user.getuserinfo();
+alert(user.getuserinfo());
+</script>
+</body>
+</html>

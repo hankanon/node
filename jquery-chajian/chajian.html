@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="jquery-2.1.4.min.js"></script>
+    <!--<script src="src/jquery.han.js"></script>-->
+    <style>
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <canvas id="getMousePos" width="500" height="500"></canvas>
+</div>
+<script>
+    var oGetMousePos = document.getElementById("getMousePos");
+    var oContext = oGetMousePos.getContext("2d");
+
+    //打印鼠标指针坐标
+    function writeMessage (oGetMousePos,message) {
+        oContext.clearRect(0, 0, oGetMousePos.width, oGetMousePos.height);
+        oContext.font = "20pt Microsoft JhengHei";
+        oContext.fillStyle = "tomato";
+        oContext.fillText(message, 10, 25);
+    };
+    //获取鼠标指针坐标
+    function getMousePos (oContext, evt) {
+        var rect = oContext.getBoundingClientRect();
+        return {
+            x: evt.clientX - rect.left,
+            y: evt.clientY - rect.top
+        };
+    }
+    //监听鼠标移动
+    oGetMousePos.addEventListener("mousemove", function(evt){
+        var mousePos = getMousePos(oGetMousePos, evt);
+        var message = "鼠标指针坐标：" + mousePos.x + "," + mousePos.y;
+        writeMessage(oGetMousePos, message);
+    },false);
+</script>
+</body>
+</html>

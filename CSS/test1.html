@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>hs</title>
+    <style>
+        .zoom-ani{
+
+        }
+        .mag-zoom-ani{
+            position: absolute;
+            top:86px;
+            left: 159px;
+            animation: mag-zoo-ani 3s infinite;
+            /*transform: translate(30px,40px);*/
+        }
+        @keyframes mag-zoo-ani {
+            0%{transform: translate(0,0);
+                opacity: 0;
+            }
+            10%{
+                transform: translate(0,0);
+                opacity: 1;
+            }
+            90%{
+                transform: translate(63px,103px);
+                opacity: 1;
+            }
+            100%{
+                transform: translate(63px,103px);
+                opacity: 0;
+            }
+
+        }
+    </style>
+</head>
+<body>
+<div class="mag-ani-container">
+    <img src="img/pic_bg_zoom_magnatic.png" alt="" class="zoom-ani" />
+    <img src="img/pic_mag.png" alt="" class="mag-zoom-ani" />
+    <img src="img/pic_mag.png" alt="" class="mag-ani" />
+    <img src="img/pic_derection.png" alt="" class="mag-zoom-derction" />
+    <img src="img/pic_derection.png" alt="" class="mag-derction" />
+</div>
+</body>
+</html>

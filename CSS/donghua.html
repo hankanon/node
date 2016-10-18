@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+
+        #demo {
+            height: 50px;
+            width: 50px;
+            border-radius: 50%;
+            border: 11px dotted  black;
+            animation-name: animation1;
+            animation-duration: 1s;
+            animation-timing-function: ease-in-out;
+            animation-iteration-count: infinite;
+        }
+
+        /*@keyframes animation1{*/
+            /*0% {transform: translate(0); }*/
+            /*20% {transform: translate(120px); }*/
+            /*40% {transform: translate(240px); }*/
+            /*60% {transform: translate(240px, 40px); }*/
+            /*80% {transform: translate(240px, 80px); }*/
+            /*100% {transform: translate(240px, 120px); }*/
+        /*}*/
+        @keyframes animation1{
+            0%{
+                transform: scale(0.1);
+            }
+            10%{
+                transform: scale(0.2);
+            }
+            30%{
+                transform: scale(0.3);
+            }
+            50%{
+                transform: scale(0.5);
+            }
+            70%{
+                transform: scale(1);
+            }
+            100%{
+                transform: scale(2);
+                opacity: 0;
+            }
+        }
+        span {position: absolute; left: 50%; top: 50%; display: block; height: 133px; margin-top: -66px; line-height: 133px; }
+
+        #a1 {color: #565656; font-size: 32px; font-family: "Trebuchet MS", helvetica, arial, sans-serif; text-align: center; }
+        #a1 {opacity: 0; }
+        #a1 {width: 110px; margin-left: -55px; animation:  animationsOut 2s ease-out 2s,animationsUpDown 1s ease 1s ; }
+        @keyframes animationsUpDown {
+
+            0% {transform: translateY(-130px); opacity: 0; }
+            50% {transform: translateY(-90px); opacity: 0; }
+            70% {transform: translateY(0); opacity: 1; }
+            75% {transform: translateY(-20px); opacity: 1 }
+            80% {transform: translateY(0); opacity: 1 }
+            85% {transform: translateY(-13px); opacity: 1 }
+            90% {transform: translateY(0); opacity: 1 }
+            95% {transform: translateY(-6px); opacity: 1 }
+            100% {transform: translateY(0); opacity: 1 }
+
+        }
+        @keyframes animationsOut {
+
+            0% {transform: translateY(0); opacity: 1 }
+            50% {transform: translateY(0); opacity: 1 }
+            65% {transform: translate(60px, -50px) rotate(90deg); opacity: 1; }
+            75% {transform: translate(90px, -70px) rotate(180deg); opacity: 1; }
+            85% {transform: translate(120px, -100px) rotate(270deg); opacity: 1; }
+            100% {transform: translate(200px, -150px) rotate(360deg); opacity: 0; }
+
+        }
+
+
+        #a2 {width: 250px; margin-left: -125px;animation: animationsGoRight 4s ease-in-out; }
+        @keyframes animationsGoRight {
+
+            0% {transform: translate(-155px); opacity: 1; }
+            70% {transform: translate(-155px); opacity: 1; }
+            80% {transform: translate(-55px); opacity: 1; }
+            100% {transform: translate(0); }
+
+        }
+    </style>
+</head>
+<body>
+<!--<div class="num" id="demo">-->
+
+<!--</div>-->
+<span id="a1">Flash</span>
+
+<span id="a2">CSS3 Animation</span>
+</body>
+</html>

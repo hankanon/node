@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    function CreateAddCardTxt() {
+        try
+        {
+            var sFilePath ="d:\\atm\\SOPClearCard.txt";
+            var fso = new ActiveXObject("Scripting.FileSystemObject");
+            if(fso.FileExists(sFilePath))
+            {
+                fso.DeleteFile(sFilePath);
+                console.log("MainService.js createTxtFile DELETE OLD TXT SUCCESS");
+            }else{
+                console.log("MainService.js createTxtFile OLD TXT IS NO EXIST");
+            }
+        }
+        catch(err)
+        {
+            console.log("runtime err: " + err.description);
+            return "failure";
+
+        }
+//        终端号
+        var terminalID = "666666666";
+        var date = "20160101";
+        var time = "12:41:48";
+        //已使用凭证
+        var useCardNum = "5";
+        //未使用凭证
+        var cardNum = "10";
+        cardNum = +cardNum;
+        useCardNum = +useCardNum;
+        var nUseCardNum = cardNum - useCardNum;
+        var str ='{"CardBox":["回收箱","回收箱","回收箱","回收箱","回收箱","回收箱","回收箱","回收箱","回收箱","回收箱","回收箱","回收箱","回收箱","回收箱"],"CardName":["","20","20","20","20","20","20","20","20","20","20","20","20","20"],"CardNO":["","6228230255232442163","6228230255232442064","6228230255232441868","6217280502000143867","6228230255232442163","6228230255232442064","6228230255232441868","6217280502000143867","6228230255232442163","6228230255232442064","6228230255232441868","6217280502000143867","6228230255232442163"],"Count":["1","1","1","1","1","1","1","1","1","1","1","1","1","1"],"Date":["16-08-24 16:49:34","16-08-29 09:42:40","16-08-29 09:48:21","16-08-29 10:43:25","16-08-29 11:17:04","16-08-29 11:55:04","16-08-29 12:15:18","16-08-29 12:34:47","16-08-29 12:41:48","16-08-29 15:22:53","16-08-29 16:35:49","16-08-29 16:47:36","16-08-29 16:53:51","16-08-29 17:49:12"],"TransType":["CRD","CRD","CRD","CRD","CRD","CRD","CRD","CRD","CRD","CRD","CRD","CRD","CRD","CRD"],"Resault":["发卡失败","发卡失败","发卡失败","发卡失败","发卡失败","发卡失败","发卡失败","发卡失败","发卡失败","发卡失败","发卡失败","发卡失败","发卡失败","发卡失败"]}';
+
+//     上次的加卡信息
+        var addinfo ='{"CardBox":["1","1","1"],"CardType":["20","20","20"],"BeginNum":["621728050200014340","",""],"EndNum":["621728050200014350","",""],"Count":["10",null,null]}';
+        addinfo = JSON.parse(addinfo);
+        var a = new Array();
+        var b = new Array();
+        var c = new Array();
+        var d = new Array();
+        var e = new Array();
+        a[0]="1";
+        b[0] = addinfo.CardType[0];
+        c[0] = addinfo.BeginNum[0];
+        d[0] = addinfo.EndNum[0];
+        e[0] = addinfo.Count[0];
+        for (var j=1;j<3;j++)
+        {
+            if(addinfo.BeginNum[j] !=null && addinfo.BeginNum[j] !=""){
+                a[j]="1";
+                b[j] = addinfo.CardType[j];
+                c[j] = addinfo.BeginNum[j];
+                d[j] = addinfo.EndNum[j];
+                e[j] = addinfo.Count[j];
+            }else{
+                a[j] = "";
+                b[j] = "";
+                c[j] = "";
+                d[j] = "";
+                e[j] = "";
+            }
+
+        }
+//本次清机的加卡信息
+        var addInfoTwo ='{"CardBox":["1","1","1"],"CardType":["20","20","20"],"BeginNum":["621728050200014345","",""],"EndNum":["621728050200014350","",""],"Count":["5",null,null]}';
+        addInfoTwo = JSON.parse(addInfoTwo);
+        var aa = new Array();
+        var bb = new Array();
+        var cc = new Array();
+        var dd = new Array();
+        var ee = new Array();
+        aa[0]="1";
+        bb[0] = addInfoTwo.CardType[0];
+        cc[0] = addInfoTwo.BeginNum[0];
+        dd[0] = addInfoTwo.EndNum[0];
+        ee[0] = addInfoTwo.Count[0];
+        for (var j=1;j<3;j++)
+        {
+            if(addInfoTwo.BeginNum[j] !=null && addInfoTwo.BeginNum[j] !=""){
+                aa[j]="1";
+                bb[j] = addInfoTwo.CardType[j];
+                cc[j] = addInfoTwo.BeginNum[j];
+                dd[j] = addInfoTwo.EndNum[j];
+                ee[j] = addInfoTwo.Count[j];
+            }else{
+                aa[j] = "";
+                bb[j] = "";
+                cc[j] = "";
+                dd[j] = "";
+                ee[j] = "";
+            }
+
+        }
+        var json = {
+            "CardBox":[],
+            "CardName":[],
+            "BeginNum":[],
+            "Count":[],
+            "TransType":[],
+            "Status":[]
+        };
+        for (var i =0;i<3;i++){
+            console.log(c[i]);
+            console.log(cc[i]);
+            if(c[i] != cc[i]){
+                json.CardBox[i]="1";
+                json.CardName[i]=b[i];
+                json.BeginNum[i]=c[i];
+                json.Count[i] = (parseInt(e[i]) - parseInt(ee[i]));
+                json.TransType[i] = "开卡";
+                json.Status[i] = "已用";
+
+            }else{
+                json.CardBox[i]="";
+                json.CardName[i]="";
+                json.BeginNum[i]="";
+                json.Count[i] = "";
+                json.TransType[i] = "";
+                json.Status[i] = "";
+            }
+
+        }
+        var jsonstr = JSON.stringify(json);
+        //创建新文件
+        try
+        {
+            var tf = fso.CreateTextFile("d:\\atm\\SOPClearCard.txt",true);
+            //写入文件内容
+            tf.WriteLine(terminalID);
+            tf.WriteLine(date);
+            tf.WriteLine(time);
+            tf.WriteLine(a[0]);
+            tf.WriteLine(b[0]);
+            tf.WriteLine(c[0]);
+            tf.WriteLine(d[0]);
+            tf.WriteLine(e[0]);
+            tf.WriteLine(a[1]);
+            tf.WriteLine(b[1]);
+            tf.WriteLine(c[1]);
+            tf.WriteLine(d[1]);
+            tf.WriteLine(e[1]);
+            tf.WriteLine(a[2]);
+            tf.WriteLine(b[2]);
+            tf.WriteLine(c[2]);
+            tf.WriteLine(d[2]);
+            tf.WriteLine(e[2]);
+            tf.WriteLine(useCardNum);
+            tf.WriteLine(nUseCardNum);
+            tf.WriteLine(jsonstr);
+            tf.WriteLine(str);
+            //关闭文件
+            tf.Close();
+            return "success";
+        }
+        catch(err)
+        {
+            console.log("runtime err: " + err.description);
+            return "failure";
+        }
+    }
+    CreateAddCardTxt();
+</script>
+
+</body>
+</html>

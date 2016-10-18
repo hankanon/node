@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var name = "The Window";
+    var object = {
+        name : "My Object",
+        getNameFunc : function(){
+            alert(this.name);       //object
+            return function(){
+                alert(this);        //windows
+                return this.name;
+            };
+        }
+    };
+//    alert(object.getNameFunc()());  //The Window
+    /**
+     * 理解:object.getNameFunc()相当于返回函数
+     * function(){
+                alert(this);
+                return this.name;
+            };
+     这个时候就是调用一个匿名函数，在全局范围内，所以this指向windows
+     */
+    function foo(){
+        alert(this);               //[Object Window]
+                                   //[Object Object]
+        console.log(this.a);
+    }
+    function doFoo(fn){
+        alert(fn);
+        fn();           // doFoo(obj.foo);  obj.foo 是 foo() 的引用
+                        // 这里等于直接 foo(); 相当于 window.foo() 其内部的  this  ===  window
+                        //doFoo(fn)函数的作用就是执行fn函数，相当于fn自执行，(fn(){})();
+    }
+    function doFoo2(o){
+//        alert(this);
+        alert(o);
+        o.foo();        // 理解上面了 就好理解这个.    o.foo()    this === o
+    }
+    var obj = {
+        a: 2,
+        foo: foo
+    };
+    var a = "I'm an a";
+    doFoo(obj.foo);
+    doFoo2(obj);
+
+</script>
+
+</body>
+</html>

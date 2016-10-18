@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var sister = '大桃花';
+    var obj = {
+        sister:'大妹哒',
+        sis:function(){
+            var sister = '小妹哒';
+            return function(){
+                console.log(sister);
+                console.log(this.sister);
+            };
+        }
+    };
+    function place(){
+        var sister = '大福晋';
+        var girl = obj.sis();
+        console.log(girl);
+        girl();
+    }
+    place();
+</script>
+</body>
+</html>

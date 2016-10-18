@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+<style>
+
+</style>
+</head>
+<body>
+
+<script>
+    function curryingHelper(fn) {
+        var _args = Array.prototype.slice.call(arguments, 1);
+        console.log("第二个参数后的参数："+_args);
+        return function() {
+            var _newArgs = Array.prototype.slice.call(arguments);
+            console.log("第二次的参数："+_newArgs);
+            var _totalArgs = _args.concat(_newArgs);
+            console.log("合并后的参数："+_totalArgs);
+            console.log("当前对象："+this);
+            console.log("fn=="+fn);
+            return fn.apply(this, _totalArgs);
+        }
+    }
+function betterCurryingHelper(fn, len) {
+    var length = len || fn.length;
+    console.log("len===="+len);
+    console.log("fn.length==="+fn.length);
+    console.log(fn[0]);
+    console.log(fn[1]);
+    console.log(fn[2]);
+    return function () {
+        var allArgsFulfilled = (arguments.length >= length);
+            console.log("arguments.length==="+arguments.length);
+        // 如果参数全部满足,就可以终止递归调用
+        if (allArgsFulfilled) {
+            return fn.apply(this, arguments);
+        }
+        else {
+            var argsNeedFulfilled = [fn].concat(Array.prototype.slice.call(arguments));
+            console.log("argsNeedFulfilled=="+argsNeedFulfilled);
+            return betterCurryingHelper(curryingHelper.apply(this, argsNeedFulfilled), length - arguments.length);
+        }
+    };
+}
+    function showMsg(name, age, fruit) {
+        console.log('My name is ' + name + ', I\'m ' + age + ' years old, ' + ' and I like eat ' + fruit);
+    }
+
+var betterShowMsg = betterCurryingHelper(showMsg);
+betterShowMsg('dreamapple', 22, 'apple'); // My name is dreamapple, I'm 22 years old,  and I like eat apple
+//betterShowMsg('dreamapple', 22)('apple'); // My name is dreamapple, I'm 22 years old,  and I like eat apple
+//betterShowMsg('dreamapple')(22, 'apple'); // My name is dreamapple, I'm 22 years old,  and I like eat apple
+//betterShowMsg('dreamapple')(22)('apple'); // My name is dreamapple, I'm 22 years old,  and I like eat apple
+</script>
+</body>
+</html>
