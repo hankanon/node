@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        ul>li{
+            margin-top: 20px;
+            height: 300px;
+            width: 400px;
+            display: none;
+            border: 1px solid black;
+        }
+        span{
+            margin: 0 10px;
+            display: inline-block;
+            background: white;
+            font-size: 15px;
+        }
+        ul>li.select{
+            display: block;
+            background: red;
+        }
+        span.select{
+            background: red;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <span class="select"> 动漫</span><span>新闻</span><span>体育</span><span>比赛</span>
+    <ul>
+        <li class="select">这是动漫</li>
+        <li>这是新闻</li>
+        <li>这是体育</li>
+        <li>这是比赛</li>
+    </ul>
+</div>
+<script>
+    var spans = document.getElementsByTagName("span");
+    var lis = document.getElementsByTagName("li");
+    for(var i=0;i<spans.length;i++){
+        spans[i].index = i;
+        spans[i].onmouseover=function(){
+            for(var i=0;i<lis.length;i++){
+                lis[i].className='';
+                spans[i].className='';
+            }
+            this.className='select';
+            lis[this.index].className='select';
+        };
+    }
+</script>
+</body>
+</html>

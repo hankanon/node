@@ -6,60 +6,44 @@
 </head>
 <body>
 <script>
-
-   function SetCustNationFlag(){
-       var str ="abcdefghigklmnopqrstuvwxyz";
-       var s = str.substring(3,8);
-       console.log(s);
-       var ss = str.substr(3,8);
-       console.log(ss);
-       var arr = [10,20,'30',40,50,60,70,80,90,100,110,120,130];
-       var a1 = arr.slice(3,8);
-       var a2 = a1.slice();
-       console.log(a2);
-       console.log(a1);
-       var pro = a2.concat('aa','bb','cc',a1);
-       console.log(pro);
-       console.log(arr[0]);
-       console.log(typeof(arr[0]));
-       console.log(arr[1]);
-       console.log(arr[2]);
-       console.log(typeof(arr[2]));
-       var crr = [1,2,3,4,5,6,7,8,9,10];
-//       crr.splice(2,5);
-       crr.splice(2,3,30,40,50);
-       console.log(crr);
-       var o = {
-           name: 'Jack',
-           age: 20,
-           city: 'Beijing'
-       };
-       for (var key in o) {
-           console.log(key); // 'name', 'age', 'city'
-       }
-       var mm = new Map([['Michael', 95], ['Bob', 75], ['Tracy', 85]]);
-       console.log(mm.get('Michael')); // 95
-
-       var m = new Map(); // 空Map
-       m.set('Adam', 67); // 添加新的key-value
-       m.set('Bob', 59);
-       console.log(m.has('Adam')); // 是否存在key 'Adam': true
-       console.log(m.get('Adam')); // 67
-       m.delete('Adam'); // 删除key 'Adam'
-       console.log(m.get('Adam')); // undefined
-       var m = new Map([[1, 'x'], [2, 'y'], [3, 'z']]);
-       m.forEach(function (value, key, map) {
-           alert(value);
-           alert(key);
-       });
-
+   function create(o){
+       function F(){}
+       F.prototype = o;
+       return new F();
    }
-   (function sum() {
-        for(var i=0;i<5;i++){
+   function createprototype(son,father){
+       var obj = create(father.prototype);	//创建对象
+       obj.constructor = son;				//增强对象
+       son.prototype = obj;				//指定对象
+   }
+   function Father(name){
+       this.name = name;
+       this.type= "父类";
+       this.color=["red","black","green"];
+   }
+   Father.prototype.sayName = function(){
+       return this.name;
+   };
+   function Son(name,age){
+       Father.call(this,name);
+       this.age = age;
+   }
+    createprototype(Son,Father);
+   Son.prototype.sayAge = function(){
+       return this.age;
+   };
+   var s1 = new Son("小明",44);
+   s1.color.push("红色");
+   console.log(s1.sayAge());
+   console.log(s1.sayName());
+   console.log(s1.color);
+   var s2 = new Son("小刚",49);
+   s2.color.push("黑色");
+   console.log(s2.sayAge());
+   console.log(s2.sayName());
+   console.log(s2.color);
 
-        }
-       alert(i);
-   })();
+   console.log(Son.prototype.constructor);
 
 </script>
 </body>
